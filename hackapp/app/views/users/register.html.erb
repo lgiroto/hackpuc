@@ -8,9 +8,49 @@
 					<h1>
 						Cadastro de Usuário:
 					</h1>
-					<% flash.each do |key, value| %>
+<!--					<% flash.each do |key, value| %>
 						<%= content_tag(:div, value, class: "alert alert-#{key}") %>
 					<% end %>
+-->							<% if @validate[:name] == 1 %>
+			<div class="row">
+				<div class = "col-md-12">
+					<div class="alert alert-danger" role="alert">
+						Você esqueceu de colocar o <strong>nome</strong>!
+					</div>
+				</div>
+			</div>
+		<% end %>
+
+		<% if @validate[:email] == 1 %>
+			<div class="row">
+				<div class = "col-md-12">
+					<div class="alert alert-danger" role="alert">
+						Você não colocou o seu <strong>e-mail</strong>!
+					</div>
+				</div>
+			</div>
+		<% end %>
+
+		<% if @validate[:email] == 2 %>
+			<div class="row">
+				<div class = "col-md-12">
+					<div class="alert alert-danger" role="alert">
+						Seu cadastro não pode ser efetuado pois já existe alguém cadastrado com esse e-mail
+					</div>
+				</div>
+			</div>
+		<% end %>
+
+		<% if @validate[:password] == 1 %>
+			<div class="row">
+				<div class = "col-md-12">
+					<div class="alert alert-danger" role="alert">
+						Você não escreveu a sua <strong>senha</strong>!
+					</div>
+				</div>
+			</div>
+		<% end %>
+
 					<%= form_for :user_form, :html => {:class => "form-horizontal"}, url: users_new_path do |u| %>
 						<div class="form-group">
 							<%= u.label :name, "Nome", class: "col-md-2 control-label" %>
