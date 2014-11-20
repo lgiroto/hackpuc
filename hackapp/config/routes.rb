@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+  get 'about/index'
+
   get 'home/index'
   get 'home/quatro'
   post 'home/new'
   get 'home/showAll'
   get 'users/register'
   get 'doctors/results'
+  get 'about/index'
+  post 'about/sendMessage'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
