@@ -24,6 +24,10 @@ class DoctorsController < ApplicationController
   	end
   end
 
+  def doctorDetails
+    @doctor = Doctor.find(params[:format])
+  end
+  
   private
     def doctor_params
       params.require(:doctor_form).permit(:name, :email, :password, :crm, :address, :healthPlans, :city, :neighborhood, :specialty)
