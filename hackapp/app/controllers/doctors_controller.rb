@@ -3,13 +3,22 @@ class DoctorsController < ApplicationController
   end
 
   def new
-    @doctor = Doctor.new(doctor_params)
-    @doctor.save
-    # UserNotifier.send_signup_email(@user).deliver
 
-    session[:user_type] = 'doctor'
-    log_in @doctor
-    @user_info = @doctor
+  doctor_search = Doctor.find_by(email: params[:doctor_form][:email])
+  if doctor_search.nil?
+      @doctor = Doctor.new(doctor_params)
+      @doctor.save
+      # UserNotifier.send_signup_email(@user).deliver
+
+      session[:user_type] = 'doctor'
+      log_in @doctor
+      @user_info = @doctor
+ 
+    else
+       #flash.now[:danger] = "Erro: Email já cadastrado!"
+       render 'register'
+     end
+   
   end
 
   def results
