@@ -20,6 +20,6 @@ class HomeController < ApplicationController
   end
 
   def user_params
-    params.require(:user_form).permit(:name, :email)
+    params.require(:user_form).permit(:name, :email, :password)
   end
 end
