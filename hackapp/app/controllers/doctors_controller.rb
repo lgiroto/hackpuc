@@ -29,7 +29,13 @@ class DoctorsController < ApplicationController
   end
 
   def doctorDetails
-    @doctor = Doctor.find(params[:format])
+    @schedules = Schedules.all
+    if params[:format]
+      @doctor ||= Doctor.find(params[:format])
+    else
+      @doctor = Doctor.find(params[:doctor])
+    end
+    @search_for_params = params[:format]
   end
   
   private

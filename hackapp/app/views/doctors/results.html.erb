@@ -28,17 +28,17 @@
 
     <div class="col-md-4">
         <%= form_for :search_form, :html => {:class => "form-horizontal"}, url: doctors_results_path do |s| %>
-	<h4>
-		<strong>
-			Procurar pelo Nome:
-		</strong>
-	</h4>
-	<div class="input-group">
-		<%= s.text_field :name, class: "form-control input-lg" %>
-		<span class="input-group-btn">
-			<%= s.submit :'Buscar', { :class=>"btn btn-primary btn-lg" } %>
-		</span>
-	</div>
+				<h4>
+					<strong>
+						Procurar pelo Nome:
+					</strong>
+				</h4>
+				<div class="input-group">
+					<%= s.text_field :name, class: "form-control input-lg" %>
+					<span class="input-group-btn">
+						<%= s.submit :'Buscar', { :class=>"btn btn-primary btn-lg" } %>
+					</span>
+				</div>
 
           <% end %> 
     </div>
