@@ -24,14 +24,21 @@
             <%= link_to 'Contato', about_index_path %>
           </li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <%= link_to 'Cadastrar', users_register_path %>
-          </li>
-          <li>
-            <%= link_to 'Log in', login_path %>
-          </li>
-        </ul>
+        <% if @user_info.nil? %>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <%= link_to 'Cadastrar', users_register_path %>
+            </li>
+            <li>
+              <%= link_to 'Log in', login_path %>
+            </li>
+          </ul>
+        <% else %>
+          <ul class="nav navbar-nav navbar-right">
+            <p class="navbar-text">Olá, fulano !!!$$$***&&&***$$$!!!</p>
+            <li><a href="#">Minha Conta</a></li>
+          </ul>
+        <% end %>
       </div>
     </div>
   </nav>

@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       flash[:danger] = 'Email ou senha invalida' # Not quite right!
       render 'new'
     end
-     redirect_to root_url
+     redirect_to root_path
   end
 
   def destroy
