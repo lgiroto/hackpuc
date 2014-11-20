@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'users/register'
   get 'doctors/results'
   post 'doctors/results'
+  get 'doctors/doctorDetails'
   get 'about/index'
   post 'about/sendMessage'
   post 'users/new'

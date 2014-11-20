@@ -14,5 +14,9 @@ class DoctorsController < ApplicationController
   		@doctorsResults = Doctor.where('name LIKE ?', "%#{params[:search_form][:name]}%")
   	end
   end
+
+  def doctorDetails
+    @doctor = Doctor.find(params[:format])
+  end
 end
 

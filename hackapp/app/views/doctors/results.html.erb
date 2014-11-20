@@ -2,9 +2,7 @@
 
 <div class="container" >
 	<h1>Doctors#results</h1>
-
-	<%= @parametro %>
-
+	
 	<% @doctorsResults.each do |doctor| %>
 		<div class="col-md-5 well" style="margin-right: 8%;" >
 
@@ -24,7 +22,7 @@
 	      	<span style="font-weight:bold;" >Localização:</span>
 	      	<%= doctor.address %>
 	      </p>
-	      <button class="btn btn-primary" >Ver mais</button>
+	      <%= link_to 'Ver Mais', doctors_doctorDetails_path(doctor), { :class=>"btn btn-primary"} %>
 		</div>
 	<% end %>
 
