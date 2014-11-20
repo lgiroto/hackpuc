@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'home/showAll'
   get 'users/register'
   get 'doctors/results'
+  post 'doctors/results'
   get 'about/index'
   post 'about/sendMessage'
   post 'users/new'
