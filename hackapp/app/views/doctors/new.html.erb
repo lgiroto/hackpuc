@@ -8,6 +8,9 @@
 					<h1>
 						Cadastro de Usuário:
 					</h1>
+					<% flash.each do |key, value| %>
+						<%= content_tag(:div, value, class: "alert alert-#{key}") %>
+					<% end %>
 					<div class="alert alert-success" role="alert">
 						<strong>Sucesso!</strong>
 						Seu cadastro foi realizado com sucesso!
