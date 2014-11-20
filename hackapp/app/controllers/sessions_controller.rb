@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
         @user_info = user
       	redirect_to root_path
     else
-      flash.now[:danger] = 'Email ou senha invalida'
+      flash.now[:danger] = "Erro: Email ou senha invalida!"
       render 'new'
     end
   end
