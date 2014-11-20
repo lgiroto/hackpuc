@@ -8,6 +8,9 @@
 					<h1>
 						Cadastro de Usuário:
 					</h1>
+					<% flash.each do |key, value| %>
+						<%= content_tag(:div, value, class: "alert alert-#{key}") %>
+					<% end %>
 					<%= form_for :user_form, :html => {:class => "form-horizontal"}, url: users_new_path do |u| %>
 						<div class="form-group">
 							<%= u.label :name, "Nome", class: "col-md-2 control-label" %>

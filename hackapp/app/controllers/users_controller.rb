@@ -3,12 +3,18 @@ class UsersController < ApplicationController
 	end
 
 	def new
-		@user = User.new(user_params)
-	  	@user.save
+		user_search = User.find_by(email: user_params[:email].downcase)
+		if user_search.nil?
+			@user = User.new(user_params)
+	 	 	@user.save
       	# UserNotifier.send_signup_email(@user).deliver
 		
-		log_in @user
-        @user_info = @user
+			log_in @user
+       		@user_info = @user
+       	else
+       		flash.now[:danger] = "Erro: Email ou senha invalida!"
+       		render 'register'
+       	end
 	end
 
 	  def showAll
