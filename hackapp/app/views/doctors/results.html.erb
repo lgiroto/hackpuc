@@ -1,8 +1,10 @@
+<%= render "topbar/default" %>
+
 <div class="container" >
 	<h1>Doctors#results</h1>
 
 	<% @doctorsResults.each do |doctor| %>
-		<div class="col-md-6" >
+		<div class="col-md-5 well" style="margin-right: 8%;" >
 
 	      <h4>
 	      	<span style="font-weight:bold;" >Nome:</span>
@@ -20,10 +22,10 @@
 	      	<span style="font-weight:bold;" >Localização:</span>
 	      	<%= doctor.address %>
 	      </p>
-	      <a href="" >Ver mais</a>
+	      <button class="btn btn-primary" >Ver mais</button>
 		</div>
 	<% end %>
 
-<%= link_to 'Voltar', home_index_path %>
+	<!-- <%= link_to 'Voltar', home_index_path, { :class=>"btn btn-danger"} %> !-->
 
 </div>
