@@ -5,7 +5,11 @@ class DoctorsController < ApplicationController
   def new
     @doctor = Doctor.new(doctor_params)
     @doctor.save
-      # UserNotifier.send_signup_email(@user).deliver
+    # UserNotifier.send_signup_email(@user).deliver
+
+    session[:user_type] = 'doctor'
+    log_in @doctor
+    @user_info = @doctor
   end
 
   def results

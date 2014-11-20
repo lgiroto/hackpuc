@@ -6,7 +6,8 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 	  	@user.save
       	# UserNotifier.send_signup_email(@user).deliver
-		
+      	
+    	session[:user_type] = 'user'
 		log_in @user
         @user_info = @user
 	end
