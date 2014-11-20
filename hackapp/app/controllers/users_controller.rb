@@ -8,6 +8,10 @@ class UsersController < ApplicationController
       	# UserNotifier.send_signup_email(@user).deliver
 	end
 
+	  def showAll
+	    @allusers = User.all
+	  end
+  
 	private
 		def user_params
 			params.require(:user_form).permit(:name, :email, :password)
