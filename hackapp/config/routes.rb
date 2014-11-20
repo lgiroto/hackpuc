@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'home/quatro'
   post 'home/new'
   get 'home/showAll'
+  get 'users/register'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,27 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+          <%= link_to image_tag("http://erambert.me/assets/img/works/pokecenter-icon.png", :border => 0, :style => "max-width:35px; margin-top: -7px;"), home_index_path, {:class => "navbar-brand"} =%>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li>
+            <%= link_to 'Página Inicial', home_index_path %>
+          </li>
+          <li><a href="#">Médicos</a></li>
+          <li><a href="#">Contatos </a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <%= link_to 'Cadastrar', users_register_path %>
+          </li>
+          <li>
+            <a href="#">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
