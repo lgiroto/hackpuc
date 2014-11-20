@@ -1,0 +1,20 @@
+<h1>MeuMedico.com</h1>
+<p>#HackPuc</p>
+
+<%= @texto %>
+
+<%= form_for :user_form, url: home_new_path do |u| %>
+  <p>
+    <%= u.label :name %><br>
+    <%= u.text_field :name %>
+  </p>
+ 
+  <p>
+    <%= u.label :email %><br>
+    <%= u.text_field :email %>
+  </p>
+ 
+  <p>
+	<%= u.submit :'Finalizar Registro' %>
+  </p>
+<% end %>
