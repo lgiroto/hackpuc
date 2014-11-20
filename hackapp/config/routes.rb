@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'home/quatro'
   post 'home/new'
-  get 'home/showAll'
+  get 'users/showAll'
   get 'users/register'
   get 'doctors/results'
   post 'doctors/results'

@@ -13,13 +13,13 @@
 					<tr>
 						<th>Nome</th>
 						<th>Email</th> 
-						<th>Senha</th>
+						<th>Senha Encriptografada</th>
 					</tr>
 					<% @allusers.each do |user| %>
 						<tr>
 							<td><%= user.name %></td>
 							<td><%= user.email %></td>
-							<td><%= user.password %></td>
+							<td><%= user.password_digest %></td>
 						<tr/>
 					<% end %>
 				</table>
