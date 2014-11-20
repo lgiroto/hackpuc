@@ -1,0 +1,29 @@
+<div class="container" >
+	<h1>Doctors#results</h1>
+
+	<% @doctorsResults.each do |doctor| %>
+		<div class="col-md-6" >
+
+	      <h4>
+	      	<span style="font-weight:bold;" >Nome:</span>
+	      	<%= doctor.name %>
+	      </h4>
+	      <p>
+	      	<span style="font-weight:bold;" >Email:</span>
+	      	<%= doctor.email %>
+	      </p>
+	      <p>
+	      	<span style="font-weight:bold;" >Especialidade:</span>
+	      	<%= doctor.specialty %>
+	      </p>
+	      <p>
+	      	<span style="font-weight:bold;" >Localização:</span>
+	      	<%= doctor.address %>
+	      </p>
+	      <a href="" >Ver mais</a>
+		</div>
+	<% end %>
+
+<%= link_to 'Voltar', home_index_path %>
+
+</div>
