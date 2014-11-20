@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'doctors/results'
   get 'about/index'
   post 'about/sendMessage'
+  post 'users/new'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
