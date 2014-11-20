@@ -1,13 +1,29 @@
-<% @allusers.each do |user| %>
-      <h1>
-      <%= user.name %>
-  </h1>
-      <br/>
-      <%= user.email %>
-      <br/>
-      <%= user.password %>
-      <br/>
-      <br/>
-<% end %>
+<%= render "topbar/default" %>
 
-<%= link_to 'Voltar', home_index_path %>
+
+<div class="container">
+		<div class="row">
+			<div class="col-md-2">
+				<%= link_to 'Voltar', home_index_path, {:class => "btn btn-primary"} %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table table-striped table-bordered ">
+					<tr>
+						<th>Nome</th>
+						<th>Email</th> 
+						<th>Senha</th>
+					</tr>
+					<% @allusers.each do |user| %>
+						<tr>
+							<td><%= user.name %></td>
+							<td><%= user.email %></td>
+							<td><%= user.password %></td>
+						<tr/>
+					<% end %>
+				</table>
+			</div>
+		</div>
+</div>
+

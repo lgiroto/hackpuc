@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'about/index'
+
   get 'home/index'
   get 'home/quatro'
   post 'home/new'
@@ -6,6 +8,8 @@ Rails.application.routes.draw do
   get 'users/register'
   get 'doctors/results'
   post 'doctors/results'
+  get 'about/index'
+  post 'about/sendMessage'
   post 'users/new'
 
   # The priority is based upon order of creation: first created -> highest priority.
