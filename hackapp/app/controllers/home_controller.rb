@@ -12,7 +12,11 @@ class HomeController < ApplicationController
 	@user = User.new(user_params)
   	@texto = @user.name
   	@user.save
-  	render "index"
+  	redirect_to home_showAll_path
+  end
+
+  def showAll
+	@allusers = User.all
   end
 
   def user_params

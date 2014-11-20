@@ -1,0 +1,9 @@
+<% @allusers.each do |user| %>
+      <%= user.name %>
+      <br/>
+      <%= user.email %>
+      <br/>
+      <br/>
+<% end %>
+
+<%= link_to 'Voltar', home_index_path %>
