@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 	def new
 		@user = User.new(user_params)
 	  	@user.save
+      	UserNotifier.send_signup_email(@user).deliver
 	end
 
 	private
