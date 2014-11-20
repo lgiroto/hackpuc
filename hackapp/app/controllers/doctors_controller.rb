@@ -1,4 +1,13 @@
 class DoctorsController < ApplicationController
+  def register
+  end
+
+  def new
+    @doctor = Doctor.new(doctor_params)
+      @doctor.save
+      # UserNotifier.send_signup_email(@user).deliver
+  end
+
   def results
   	@doctorsResults = Doctor.all
   	if params[:neighborhood] && params[:neighborhood] != ''
@@ -14,5 +23,10 @@ class DoctorsController < ApplicationController
   		@doctorsResults = Doctor.where('name LIKE ?', "%#{params[:search_form][:name]}%")
   	end
   end
+
+  private
+    def doctor_params
+      params.require(:doctor_form).permit(:name, :email, :password, :crm, :address, :healthPlans, :city, :neighborhood, :specialty)
+    end
 end
 

@@ -1,0 +1,77 @@
+<%= render "topbar/default" %>
+
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-1">
+					<h1>
+						Cadastro de Médicos:
+					</h1>
+					<%= form_for :doctor_form, :html => {:class => "form-horizontal"}, url: doctors_new_path do |u| %>
+						<div class="form-group">
+							<%= u.label :name, "Nome", class: "col-md-3 control-label" %>
+					        <div class="col-md-9">
+					          <%= u.text_field :name, class: "form-control", placeholder: "Nome" %>
+					        </div>
+						</div>
+						<div class="form-group">
+							<%= u.label :email, "Email", class: "col-md-3 control-label" %>
+					        <div class="col-md-6">
+					          <%= u.email_field :email, class: "form-control", placeholder: "Email" %>
+					        </div>
+						</div>
+						<div class="form-group">
+							<%= u.label :password, "Senha", class: "col-md-3 control-label" %>
+					        <div class="col-md-6">
+					          <%= u.password_field :password, class: "form-control", placeholder: "Senha" %>
+					        </div>
+						</div>
+						<div class="form-group">
+							<%= u.label :crm, "CRM", class: "col-md-3 control-label" %>
+					        <div class="col-md-6">
+					          <%= u.text_field :crm, class: "form-control", placeholder: "CRM" %>
+					        </div>
+						</div>
+						<div class="form-group">
+							<%= u.label :city, "Cidade", class: "col-md-3 control-label" %>
+					        <div class="col-md-6">
+					          <%= u.text_field :city, class: "form-control", placeholder: "Cidade" %>
+					        </div>
+						</div>
+						<div class="form-group">
+							<%= u.label :neighborhood, "Bairro", class: "col-md-3 control-label" %>
+					        <div class="col-md-6">
+					          <%= u.text_field :neighborhood, class: "form-control", placeholder: "Bairro" %>
+					        </div>
+						</div>
+						<div class="form-group">
+							<%= u.label :address, "Endereço", class: "col-md-3 control-label" %>
+					        <div class="col-md-9">
+					          <%= u.text_field :address, class: "form-control", placeholder: "Endereço" %>
+					        </div>
+						</div>
+						<div class="form-group">
+							<%= u.label :healthPlans, "Plano de Saúde", class: "col-md-3 control-label" %>
+					        <div class="col-md-6">
+					          <%= u.text_field :healthPlans, class: "form-control", placeholder: "Plano de Saúde" %>
+					        </div>
+						</div>
+						<div class="form-group">
+							<%= u.label :specialty, "Especialidade", class: "col-md-3 control-label" %>
+					        <div class="col-md-6">
+					          <%= u.text_field :specialty, class: "form-control", placeholder: "Especialidade" %>
+					        </div>
+						</div>
+						<div class="form-group">
+						    <div class="col-md-offset-3 col-md-9">
+								<%= u.submit :'Cadastrar', class: "btn btn-primary btn-lg" %>
+						    </div>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
