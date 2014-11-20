@@ -8,7 +8,9 @@
 			<div class="row">
 			  <div class="col-md-6 col-md-offset-1">
 			  	<h1>Log in:</h1>
-
+				<% flash.each do |key, value| %>
+					<%= content_tag(:div, value, class: "alert alert-#{key}") %>
+				<% end %>
 			    <%= form_for(:session, :html => {:class => "form-horizontal"}, url: login_path) do |u| %>
 
 					<div class="form-group">
