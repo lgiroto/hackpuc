@@ -1,12 +1,11 @@
 class AboutController < ApplicationController
-  def index
+  	def index
 
-  end
+  	end
 
-  def sendMessage
- 	@message = params[:message_form]
- 	#AboutNotifier.send_about_email(@message).deliver
- 	render "index"
-  end
+  	def sendMessage
+ 		@message = params[:message_form]
+ 		#AboutNotifier.send_about_email(@message).deliver
+	end
 
 end
