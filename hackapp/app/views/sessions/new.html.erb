@@ -27,13 +27,31 @@
 				        </div>
 					</div>
 
+					<%= u.radio_button :user_type, 'user', :checked => true %>
+					<%= label :user_type_user, 'Paciente' %>
+					<%= u.radio_button :user_type, 'doctor' %>
+					<%= label :user_type_doctor, 'Médico' %>
+<!-- 			   	<div class="radio-inline">
+				<label>
+				    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+				    Paciente
+				  </label>
+				</div>
+				<div class="radio-inline">
+				<label>
+				    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
+				    Médico
+				  </label>
+				</div> -->
+
 					<div class="form-group">
 					    <div class="col-md-offset-2 col-md-10">
 							<%= u.submit :'Login', class: "btn btn-primary btn-lg" %>
 					    </div>
 					</div>
 			   	<% end %>
-			   	<p>Novo usuário? <%= link_to "Cadastre-se agora!", users_register_path %></p>
+
+			   	<p><strong>Novo usuário?</strong> <%= link_to "Cadastre-se agora!", users_register_path %></p>
 			  </div>
 <!--				<div class="col-md-3 col-md-offset-1 well">
 				<h1>

@@ -4,7 +4,7 @@ class DoctorsController < ApplicationController
 
   def new
     @doctor = Doctor.new(doctor_params)
-      @doctor.save
+    @doctor.save
       # UserNotifier.send_signup_email(@user).deliver
   end
 
