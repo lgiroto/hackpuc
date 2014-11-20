@@ -6,11 +6,11 @@ module SessionsHelper
   end
   # Returns the current logged-in user (if any).
   def current_user
-  	if session[:user_type] == 'user'
-	  @current_user ||= User.find_by(id: session[:user_id])
-	else
-	  @current_user ||= Doctor.find_by(id: session[:user_id])
-	end
+    if session[:user_type] == 'user'
+    @current_user ||= User.find_by(id: session[:user_id])
+    else
+    @current_user ||= Doctor.find_by(id: session[:user_id])
+    end
   end
   # Returns true if the user is logged in, false otherwise.
   def logged_in?
