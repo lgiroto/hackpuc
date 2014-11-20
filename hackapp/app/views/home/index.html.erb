@@ -1,24 +1,59 @@
 <%= render "topbar/default" %>
 
-<h1>MeuMedico.com</h1>
-<p>#HackPuc</p>
+<div>
+  <h1 style = "margin-bottom: 7%; text-align: center; font-size: 5em;">MeuMédico.com</h1>
+</div>
 
-<%= @texto %>
+<div class = "container-fluid well">
+  <%= form_for :search_form, :html => {:class => "form-horizontal"}, url: doctors_results_path do |s| %>
+  <div class = "row">
+    <div class= "col-md-2 col-md-offset-2">
+      <h4><strong>Especialidade</strong></h4>
+    </div>
 
-<%= form_for :user_form, url: home_new_path do |u| %>
-  <p>
-    <%= u.label :name %><br>
-    <%= u.text_field :name %>
-  </p>
- 
-  <p>
-    <%= u.label :email %><br>
-    <%= u.text_field :email %>
-  </p>
- 
-  <p>
-	<%= u.submit :'Finalizar Registro' %>
-  </p>
-<% end %>
+    <div class= "col-md-2">
+      <h4><strong>Plano de Saúde</strong></h4>
+    </div>
 
-<!-- Mauricio was here -->
+    <div class= "col-md-2">
+      <h4><strong>Bairro</strong></h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2 col-md-offset-2">
+      <%= select_tag(:specialty, options_for_select([['---', ''],['Cardiologia', 'cardiologia'], ['Pediatria', 'Pediatria'], ['Ginecologia', 'Ginecologia']]), { :class=>"form-control input-lg", :style=>"margin-bottom: 30%;"}) %>
+    </div>
+
+    <div class="col-md-2">
+      <%= select_tag(:healthPlans, options_for_select([['---', ''],['Unimed', 'Unimed'], ['Bradesco', 'Bradesco'], ['Golden Cross', 'Golden Cross'], ['Amil', 'Amil']]), { :class=>"form-control input-lg", :style=>"margin-bottom: 30%;"}) %>
+    </div>
+
+    <div class="col-md-2">
+      <%= select_tag(:neighborhood, options_for_select([['---', ''],['Barra da Tijuca', 'Barra da Tijuca'], ['Tijuca', 'Tijuca'], ['Leblon', 'Leblon'], ['Madureira', 'Madureira']]), { :class=>"form-control input-lg", :style=>"margin-bottom: 30%;"}) %>
+    </div>
+
+    <%= s.submit :'Buscar', { :class=>"btn btn-primary btn-lg" } %>
+  </div>
+
+  <% end %> 
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <%= form_for :search_form, :html => {:class => "form-horizontal"}, url: doctors_results_path do |s| %>
+        <div class="input-group">
+          
+        <%= s.text_field :name, class: "form-control input-lg", placeholder: "Ou procure seu médico pelo nome" %>
+         
+      <span class="input-group-btn">
+        <%= s.submit :'Buscar', { :class=>"btn btn-primary btn-lg" } %>
+      </span>
+
+        </div>
+
+          <% end %> 
+    </div>
+
+  </div>
+
+</div>

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'home/showAll'
   get 'users/register'
   get 'doctors/results'
+  post 'doctors/results'
   post 'users/new'
 
   # The priority is based upon order of creation: first created -> highest priority.
