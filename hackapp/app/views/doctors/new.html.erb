@@ -1,16 +1,11 @@
-<%= render "topbar/default" %>
+<%= render partial: "topbar/default", locals: {active_button: "register"} %>
 
 <div class="container">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-1">
-					<h1>
-						Cadastro de Usuário:
-					</h1>
-					<% flash.each do |key, value| %>
-						<%= content_tag(:div, value, class: "alert alert-#{key}") %>
-					<% end %>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2 well">
+					<h2>
+						Cadastro de Médicos:
+					</h2>
 					<div class="alert alert-success" role="alert">
 						<strong>Sucesso!</strong>
 						Seu cadastro foi realizado com sucesso!
@@ -19,83 +14,81 @@
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Nome</label>
 						<div class="col-sm-9">
-							<p class="form-control-static">
+							<div class="form-control-static">
 								<%= @doctor.name %>
-							</p>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Email</label>
 						<div class="col-sm-9">
-							<p class="form-control-static">
+							<div class="form-control-static">
 								<%= @doctor.email %>
-							</p>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Senha</label>
 						<div class="col-sm-9">
-							<p class="form-control-static">
+							<div class="form-control-static">
 								**********
-							</p>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">CRM</label>
 						<div class="col-sm-9">
-							<p class="form-control-static">
+							<div class="form-control-static">
 								<%= @doctor.crm %>
-							</p>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Cidade</label>
 						<div class="col-sm-9">
-							<p class="form-control-static">
+							<div class="form-control-static">
 								<%= @doctor.city %>
-							</p>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Bairro</label>
 						<div class="col-sm-9">
-							<p class="form-control-static">
+							<div class="form-control-static">
 								<%= @doctor.neighborhood %>
-							</p>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Endereço</label>
 						<div class="col-sm-9">
-							<p class="form-control-static">
+							<div class="form-control-static">
 								<%= @doctor.address %>
-							</p>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Plano de Saúde</label>
 						<div class="col-sm-9">
-							<p class="form-control-static">
+							<div class="form-control-static">
 								<%= @doctor.healthPlans %>
-							</p>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Especialidade:</label>
 						<div class="col-sm-9">
-							<p class="form-control-static">
+							<div class="form-control-static">
 								<%= @doctor.specialty %>
-							</p>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-md-offset-2 col-md-10">
-          					<%= link_to "Retornar à Página Inicial", home_index_path, {:class => "btn btn-success btn-lg"} =%>
+						<div class="col-md-offset-2 col-md-8">
+          					<%= link_to "Retornar à Página Inicial", home_index_path, {:class => "btn btn-success btn-lg btn-block"} =%>
 						</div>
 					</div>
 					</form>
-			</div>
 		</div>
 	</div>
 </div>
-

@@ -1,68 +1,75 @@
-<%= render "topbar/default" %>
+<%= render partial: "topbar/default", locals: {active_button: "login"} %>
 
 <% provide(:title, "Log in") %>
 
 <div class="container">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<div class="row">
-			  <div class="col-md-6 col-md-offset-1">
-			  	<h1>Log in:</h1>
-				<% flash.each do |key, value| %>
-					<%= content_tag(:div, value, class: "alert alert-#{key}") %>
-				<% end %>
-			    <%= form_for(:session, :html => {:class => "form-horizontal"}, url: login_path) do |u| %>
+	<div class="row">
+	  <div class="col-md-6 col-md-offset-3 jumbotron">
+	  	<h1 class="text-center">Login</h1>
+		<% flash.each do |key, value| %>
+			<%= content_tag(:div, value, class: "alert alert-#{key}") %>
+		<% end %>
+	    <%= form_for(:session, :html => {:class => "form-horizontal"}, url: login_path) do |u| %>
 
-					<div class="form-group">
-						<%= u.label :email, "Email", class: "col-md-2 control-label" %>
-				        <div class="col-md-6">
-				          <%= u.email_field :email, class: "form-control", placeholder: "Email" %>
-				        </div>
-					</div>
+			<div class="form-group">
+				<%= u.label :email, "Email", class: "col-md-2 control-label" %>
+		        <div class="col-md-9">
+		          <%= u.email_field :email, class: "form-control", placeholder: "Email" %>
+		        </div>
+			</div>
 
-					<div class="form-group">
-						<%= u.label :password, "Senha", class: "col-md-2 control-label" %>
-				        <div class="col-md-6">
-				          <%= u.password_field :password, class: "form-control", placeholder: "Senha" %>
-				        </div>
-					</div>
+			<div class="form-group">
+				<%= u.label :password, "Senha", class: "col-md-2 control-label" %>
+		        <div class="col-md-9">
+		          <%= u.password_field :password, class: "form-control", placeholder: "Senha" %>
+		        </div>
+			</div>
 
+			<div class="form-group">
+		        <div class="col-md-10 col-md-offset-2">
 					<%= u.radio_button :user_type, 'user', :checked => true %>
 					<%= label :user_type_user, 'Paciente' %>
 					<%= u.radio_button :user_type, 'doctor' %>
 					<%= label :user_type_doctor, 'Médico' %>
-<!-- 			   	<div class="radio-inline">
-				<label>
-				    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-				    Paciente
-				  </label>
 				</div>
-				<div class="radio-inline">
-				<label>
-				    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
-				    Médico
-				  </label>
-				</div> -->
+			</div>
+<!-- 			   	<div class="radio-inline">
+		<label>
+		    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+		    Paciente
+		  </label>
+		</div>
+		<div class="radio-inline">
+		<label>
+		    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
+		    Médico
+		  </label>
+		</div> -->
 
-					<div class="form-group">
-					    <div class="col-md-offset-2 col-md-10">
-							<%= u.submit :'Login', class: "btn btn-primary btn-lg" %>
-					    </div>
-					</div>
-			   	<% end %>
 
-			   	<p><strong>Novo usuário?</strong> <%= link_to "Cadastre-se agora!", users_register_path %></p>
-			  </div>
-<!--				<div class="col-md-3 col-md-offset-1 well">
-				<h1>
-					Médicos:
-				</h1>
-				<p>
-					Deseja se registrar como médico do sistema?
-				</p>
-				<%= link_to 'Registro para Médicos »', doctors_register_path, {:class => "btn btn-primary"} %>
-				</div> -->
+
+	  	<div class="row">
+			<div class="form-group">
+			    <div class="col-md-10 col-md-offset-1 ">
+					<%= u.submit :'Entrar!', class: "btn btn-primary btn-lg btn-block" %>
+			    </div>
 			</div>
 		</div>
+	  	<div class="row text-center">
+		    <div class="col-md-10 col-md-offset-1 ">
+		   	<strong>Novo usuário?</strong> <%= link_to "Cadastre-se agora!", users_register_path %>
+		    </div>
+		</div>
+	  </div>
+<!--				<div class="col-md-3 col-md-offset-1 well">
+		<h1>
+			Médicos:
+		</h1>
+		<p>
+			Deseja se registrar como médico do sistema?
+		</p>
+		<%= link_to 'Registro para Médicos »', doctors_register_path, {:class => "btn btn-primary"} %>
+		</div> -->
 	</div>
+	   	<% end %>
 </div>

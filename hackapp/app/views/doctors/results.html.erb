@@ -1,12 +1,12 @@
-<%= render "topbar/default" %>
+<%= render partial: "topbar/default", locals: {active_button: "none"} %>
 
 <div class="container" >
-	<div class = "container-fluid well">
+	<div class = "container-fluid">
   <%= form_for :search_form, :html => {:class => "form-horizontal"}, url: doctors_results_path do |s| %>
   <div class = "row">
     <div class= "col-md-2">
       <h4><strong>Especialidade</strong></h4>
-      <%= select_tag(:specialty, options_for_select([['---', ''],['Cardiologia', 'cardiologia'], ['Pediatria', 'Pediatria'], ['Ginecologia', 'Ginecologia']]), { :class=>"form-control input-lg", :style=>"margin-bottom: 10%;"}) %>
+      <%= select_tag(:specialty, options_for_select([['---', ''],['Cardiologia', 'Cardiologista'], ['Pediatria', 'Pediatria'], ['Ginecologia', 'Ginecologia']]), { :class=>"form-control input-lg", :style=>"margin-bottom: 10%;"}) %>
     </div>
 
     <div class= "col-md-2">
@@ -45,32 +45,46 @@
   </div>
 </div>
 
-	
-	<h1 style="margin-top: 0;" >Médicos Registrados</h1>
+</div>
+<div class="container jumbotron" style="background-color: rgba(255,255,255,1);">
+	<% if @doctorsResults.empty? %>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<h2 class="text-center">
+			    <span class="glyphicon glyphicon-search"></span>
+				Oops... Nenhum Resultado Encontrado
+			</h2>
+		</div>
+	</div>
+	<% end %>
 
 	<% @doctorsResults.each do |doctor| %>
-		<div class="col-md-6 well" >
+		<div class=" col-md-offset-1 col-md-4 well" >
 
+		<div class="col-md-10" >
 	      <h4>
-	      	<span style="font-weight:bold;" >Nome:</span>
 	      	<%= doctor.name %>
 	      </h4>
-	      <p>
-	      	<span style="font-weight:bold;" >Email:</span>
-	      	<%= doctor.email %>
-	      </p>
-	      <p>
+	      <h5>
 	      	<span style="font-weight:bold;" >Especialidade:</span>
 	      	<%= doctor.specialty %>
-	      </p>
-	      <p>
-	      	<span style="font-weight:bold;" >Localização:</span>
+	      </h5>
+	      <h5>
+	      	<span class="glyphicon glyphicon-map-marker"></span>
+	      	<%= doctor.city %>, <%= doctor.neighborhood %>,
 	      	<%= doctor.address %>
-	      </p>
-	      <%= link_to 'Ver Mais', doctors_doctorDetails_path(doctor), { :class=>"btn btn-primary"} %>
+	      </h5>
+	      <h5>
+	      	<span class="glyphicon glyphicon-envelope"></span>
+	      	<%= doctor.email %>
+	      </h5>
+	  	</div>
+		<div class="col-md-12" >
+	      <%= link_to "Mais <span class='glyphicon glyphicon glyphicon-plus'></span>".html_safe, doctors_doctorDetails_path(doctor), { :class=>"btn btn-info btn-block"} %>
+		</div>
 		</div>
 	<% end %>
+</div>
 
 	<!-- <%= link_to 'Voltar', home_index_path, { :class=>"btn btn-danger"} %> !-->
 
-</div>

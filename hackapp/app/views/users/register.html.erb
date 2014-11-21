@@ -1,80 +1,81 @@
-<%= render "topbar/default" %>
+<%= render partial: "topbar/default", locals: {active_button: "register"} %>
 
-<div class="container">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-1">
-					<h1>
-						Cadastro de Usuário:
-					</h1>
-					<% flash.each do |key, value| %>
-						<%= content_tag(:div, value, class: "alert alert-#{key}") %>
-					<% end %>
-					<%= form_for :user_form, :html => {:class => "form-horizontal"}, url: users_new_path do |u| %>
-						<div class="form-group">
-							<%= u.label :name, "Nome", class: "col-md-2 control-label" %>
-					        <div class="col-md-10">
-					          <%= u.text_field :name, class: "form-control", placeholder: "Nome" %>
-					        </div>
-						</div>
-						<div class="form-group">
-							<%= u.label :email, "Email", class: "col-md-2 control-label" %>
-					        <div class="col-md-6">
-					          <%= u.email_field :email, class: "form-control", placeholder: "Email" %>
-					        </div>
-						</div>
-						<div class="form-group">
-							<%= u.label :password, "Senha", class: "col-md-2 control-label" %>
-					        <div class="col-md-6">
-					          <%= u.password_field :password, class: "form-control", placeholder: "Senha" %>
-					        </div>
-						</div>
-						<div class="form-group">
-						    <div class="col-md-offset-2 col-md-10">
-								<%= u.submit :'Cadastrar', class: "btn btn-primary btn-lg" %>
-						    </div>
-						</div>
-					<% end %>
-				<!--
-					<form class="form-horizontal" role="form">
-					  <div class="form-group">
-					    <label for="inputName" class="col-md-2 control-label">Nome</label>
-					    <div class="col-md-10">
-					      <input type="email" class="form-control" id="inputName" placeholder="Nome">
-					    </div>
-					  </div>
-					  <div class="form-group">
-					    <label for="inputEmail" class="col-md-2 control-label">Email</label>
-					    <div class="col-md-6">
-					      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-					    </div>
-					  </div>
-					  <div class="form-group">
-					    <label for="inputPassword" class="col-md-2 control-label">Senha</label>
-					    <div class="col-md-6">
-					      <input type="password" class="form-control" id="inputPassword" placeholder="Senha">
-					    </div>
-					  </div>
-					  <div class="form-group">
-					    <div class="col-md-offset-2 col-md-10">
-					      <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
-					    </div>
-					  </div>
-					</form>
-				-->
+<div class="container jumbotron">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-1">
+			<h2>
+				Cadastro de Usuário:
+			</h2>
+			<% if @erro == true %>
+				<div class="alert alert-danger" role="alert">
+					<strong>Erro!</strong>
+					Já existe um usuário com este e-mail registrado.
 				</div>
-				<div class="col-md-3 col-md-offset-1">
-					<h1>
-						Médicos:
-					</h1>
-					<p>
-						Deseja se registrar como médico do sistema?
-					</p>
-					<%= link_to 'Registro para Médicos »', doctors_register_path, {:class => "btn btn-primary"} %>
+			<% end %>
+			<%= form_for :user_form, :html => {:class => "form-horizontal"}, url: users_new_path do |u| %>
+				<div class="form-group">
+					<%= u.label :name, "Nome", class: "col-md-2 control-label" %>
+			        <div class="col-md-10">
+			          <%= u.text_field :name, class: "form-control", placeholder: "Nome" %>
+			        </div>
 				</div>
-			</div>
+				<div class="form-group <% if @erro == true %>has-error<%end%>">
+					<%= u.label :email, "Email", class: "col-md-2 control-label" %>
+			        <div class="col-md-6">
+			          <%= u.email_field :email, class: "form-control", placeholder: "Email" %>
+			        </div>
+				</div>
+				<div class="form-group">
+					<%= u.label :password, "Senha", class: "col-md-2 control-label" %>
+			        <div class="col-md-6">
+			          <%= u.password_field :password, class: "form-control", placeholder: "Senha" %>
+			        </div>
+				</div>
+				<div class="form-group">
+				    <div class="col-md-offset-2 col-md-10">
+						<%= u.submit :'Cadastrar', class: "btn btn-primary btn-lg" %>
+				    </div>
+				</div>
+			<% end %>
+		<!--
+			<form class="form-horizontal" role="form">
+			  <div class="form-group">
+			    <label for="inputName" class="col-md-2 control-label">Nome</label>
+			    <div class="col-md-10">
+			      <input type="email" class="form-control" id="inputName" placeholder="Nome">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputEmail" class="col-md-2 control-label">Email</label>
+			    <div class="col-md-6">
+			      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword" class="col-md-2 control-label">Senha</label>
+			    <div class="col-md-6">
+			      <input type="password" class="form-control" id="inputPassword" placeholder="Senha">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <div class="col-md-offset-2 col-md-10">
+			      <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
+			    </div>
+			  </div>
+			</form>
+		-->
 		</div>
+
+				<div class="col-md-3 col-md-offset-1 well text-center">
+					<h2>
+						Médicos:
+					</h2>
+					<p>
+						Deseja se registrar como médico?
+					</p>
+					<%= link_to 'Registro para Médicos »', doctors_register_path, {:class => "btn btn-primary btn-lg"} %>
+				</div>
+
 	</div>
 </div>
 

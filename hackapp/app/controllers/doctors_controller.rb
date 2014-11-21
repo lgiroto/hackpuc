@@ -1,5 +1,6 @@
 class DoctorsController < ApplicationController
   def register
+      @erro = false
   end
 
   def new
@@ -10,12 +11,13 @@ class DoctorsController < ApplicationController
       @doctor.save
       # UserNotifier.send_signup_email(@user).deliver
 
+      @erro = false
       session[:user_type] = 'doctor'
       log_in @doctor
       @user_info = @doctor
  
     else
-       #flash.now[:danger] = "Erro: Email já cadastrado!"
+       @erro = true
        render 'register'
      end
    
