@@ -1,6 +1,17 @@
 class DoctorsController < ApplicationController
   def register
       @erro = false
+
+      @validate = Hash.new
+      @validate[:name] = 0
+      @validate[:email] = 0
+      @validate[:password] = 0
+      @validate[:crm] = 0
+      @validate[:city] = 0
+      @validate[:neighborhood] = 0
+      @validate[:address] = 0
+      @validate[:healthPlans] = 0
+      @validate[:specialty] = 0
   end
 
   def index
@@ -11,6 +22,52 @@ class DoctorsController < ApplicationController
   end
 
   def new
+    
+
+    @validate = Hash.new
+    @temp = params[:doctor_form]
+
+    if @temp[:name].blank?
+      @validate[:name] = 1
+    end
+  
+    if @temp[:password].blank?
+      @validate[:password] = 1
+    end
+
+    if @temp[:crm].blank?
+      @validate[:crm] = 1
+    end
+
+    if @temp[:email].blank?
+      @validate[:email] = 1
+    end
+
+    if @temp[:city].blank?
+      @validate[:city] = 1
+    end
+
+    if @temp[:neighborhood].blank?
+      @validate[:neighborhood] = 1
+    end
+
+    if @temp[:address].blank?
+      @validate[:address] = 1
+    end
+
+    if @temp[:healthPlans].blank?
+      @validate[:healthPlans] = 1
+    end
+
+    if @temp[:specialty].blank?
+      @validate[:specialty] = 1
+    end
+
+    if @temp[:name].blank? || @temp[:password].blank? || @temp[:email].blank? || @temp[:specialty].blank? || @temp[:healthPlans].blank? || @temp[:address].blank? || @temp[:neighborhood].blank? || @temp[:city].blank? || @temp[:crm].blank?
+      render "register" 
+      else
+
+
 
   doctor_search = Doctor.find_by(email: params[:doctor_form][:email])
   if doctor_search.nil?
@@ -29,10 +86,15 @@ class DoctorsController < ApplicationController
        @erro = true
        render 'register'
      end
-   
+   end
   end
 
   def results
+
+    @validate = Hash.new
+    @validate[:name] = 0
+    @validate[:email] = 0
+    @validate[:message] = 0
 
     allusers = Doctor.all
       

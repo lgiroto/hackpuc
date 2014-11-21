@@ -12,6 +12,97 @@
 					Já existe um usuário com este e-mail registrado.
 				</div>
 			<% end %>
+
+			<% if @validate[:name] == 1 %>
+				<div class="row">
+					<div class = "col-md-12">
+						<div class="alert alert-danger" role="alert">
+							Você esqueceu de colocar o <strong>nome</strong>!
+						</div>
+					</div>
+				</div>
+			<% end %>
+
+			<% if @validate[:email] == 1 %>
+				<div class="row">
+					<div class = "col-md-12">
+						<div class="alert alert-danger" role="alert">
+							Você esqueceu de colocar o <strong>e-mail</strong>!
+						</div>
+					</div>
+				</div>
+			<% end %>
+
+			<% if @validate[:password] == 1 %>
+				<div class="row">
+					<div class = "col-md-12">
+						<div class="alert alert-danger" role="alert">
+							Você esqueceu de colocar a <strong>senha</strong>!
+						</div>
+					</div>
+				</div>
+			<% end %>
+
+			<% if @validate[:crm] == 1 %>
+				<div class="row">
+					<div class = "col-md-12">
+						<div class="alert alert-danger" role="alert">
+							Você esqueceu de colocar o <strong>CRM</strong>!
+						</div>
+					</div>
+				</div>
+			<% end %>
+
+			<% if @validate[:city] == 1 %>
+				<div class="row">
+					<div class = "col-md-12">
+						<div class="alert alert-danger" role="alert">
+							Você esqueceu de colocar a <strong>cidade</strong>!
+						</div>
+					</div>
+				</div>
+			<% end %>
+
+			<% if @validate[:neighborhood] == 1 %>
+				<div class="row">
+					<div class = "col-md-12">
+						<div class="alert alert-danger" role="alert">
+							Você esqueceu de colocar o <strong>bairro</strong>!
+						</div>
+					</div>
+				</div>
+			<% end %>
+
+			<% if @validate[:address] == 1 %>
+				<div class="row">
+					<div class = "col-md-12">
+						<div class="alert alert-danger" role="alert">
+							Você esqueceu de colocar o <strong>endereco</strong>!
+						</div>
+					</div>
+				</div>
+			<% end %>
+
+			<% if @validate[:healthPlans] == 1 %>
+				<div class="row">
+					<div class = "col-md-12">
+						<div class="alert alert-danger" role="alert">
+							Você esqueceu de colocar o <strong>plano de saude</strong>!
+						</div>
+					</div>
+				</div>
+			<% end %>
+
+			<% if @validate[:specialty] == 1 %>
+				<div class="row">
+					<div class = "col-md-12">
+						<div class="alert alert-danger" role="alert">
+							Você esqueceu de colocar a <strong>especialidade</strong>!
+						</div>
+					</div>
+				</div>
+			<% end %>
+
 			<%= form_for :doctor_form, :html => {:class => "form-horizontal"}, url: doctors_new_path do |u| %>
 				<div class="form-group">
 					<%= u.label :name, "Nome", class: "col-md-3 control-label" %>
