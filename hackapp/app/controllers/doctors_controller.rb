@@ -1,5 +1,13 @@
 class DoctorsController < ApplicationController
   def register
+      @erro = false
+  end
+
+  def index
+    @hash = Gmaps4rails.build_markers(@doctors) do |doctor, marker|
+      marker.lat doctor.latitude
+      marker.lng doctor.longitude
+    end
   end
 
   def new
@@ -10,12 +18,13 @@ class DoctorsController < ApplicationController
       @doctor.save
       # UserNotifier.send_signup_email(@user).deliver
 
+      @erro = false
       session[:user_type] = 'doctor'
       log_in @doctor
       @user_info = @doctor
  
     else
-       #flash.now[:danger] = "Erro: Email já cadastrado!"
+       @erro = true
        render 'register'
      end
    
@@ -38,18 +47,50 @@ class DoctorsController < ApplicationController
   end
 
   def doctorDetails
-    @schedules = Schedules.all
+    @hours = 7; # Horário de Início dos Expedientes
+
     if params[:format]
-      @doctor ||= Doctor.find(params[:format])
+      @doctor = Doctor.find(params[:format])
     else
       @doctor = Doctor.find(params[:doctor])
     end
+
+    @schedules = Schedules.where :calendarID => @doctor.calendarID
     @search_for_params = params[:format]
+
+    # Implementar situação em que os agendamentos esgotaram
+
+    if params[:date]
+      @date = params[:date]
+      @schedules = Schedules.where :calendarID => @doctor.calendarID
+      @schedules = @schedules.where :date => @date
+    else
+      @date = ''
+    end
+  end
+
+  def createSchedule
+    # Realiza Agendamento
+    @newSchedule = Schedules.new(schedule_params)
+    @newSchedule.save
+
+    # Recupera informações do Doctor
+    @doctor = Doctor.find(params[:doctor])
+    @date = params[:date]
+    @schedules = Schedules.where :calendarID => @doctor.calendarID
+    @schedules = @schedules.where :date => @date
+
+    redirect_to :controller => 'doctors', :action => 'doctorDetails', :doctor => params[:doctor], :date => @date
   end
   
   private
     def doctor_params
       params.require(:doctor_form).permit(:name, :email, :password, :crm, :address, :healthPlans, :city, :neighborhood, :specialty)
+    end
+
+  private
+    def schedule_params
+      params.permit(:date, :hour, :calendarID, :userID)
     end
 end
 

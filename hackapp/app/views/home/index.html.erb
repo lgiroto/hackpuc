@@ -1,11 +1,45 @@
-<%= render "topbar/default" %>
+<%= render partial: "topbar/default", locals: {active_button: "home"} %>
 
-<div>
-  <h1 style = "margin-bottom: 7%; text-align: center; font-size: 5em;">MeuMédico.com</h1>
+<div style="margin: 0px;
+    background-image: url(http://www.calpirg.org/sites/pirg/files/WEB_USN-c3_Health-Care-Slide.jpg);
+    background-position: 0% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: black;
+    margin-top: -20px;
+    ">
+
+<div class = "jumbotron" style=" 
+background: rgba(255, 255, 255, 0.8);
+">
+<div class = "container-fluid text-center">
+<h1>
+  <strong>
+    MeuMédico.com
+  </strong>
+</h1>
 </div>
+<div class = "container-fluid">
 
-<div class = "container-fluid well">
-  <%= form_for :search_form, :html => {:class => "form-horizontal"}, url: doctors_results_path do |s| %>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <%= form_for :search_form, :html => {:class => "form-horizontal"}, url: doctors_results_path do |s| %>
+	<h4>
+		<strong>
+			Procurar pelo nome do Médico:
+		</strong>
+	</h4>
+	<div class="input-group">
+		<%= s.text_field :name, class: "form-control input-lg" %>
+		<span class="input-group-btn">
+			<%= s.submit :'Buscar', { :class=>"btn btn-primary btn-lg" } %>
+		</span>
+	</div>
+
+          <% end %> 
+    </div>
+
+      <%= form_for :search_form, :html => {:class => "form-horizontal"}, url: doctors_results_path do |s| %>
   <div class = "row">
     <div class= "col-md-2 col-md-offset-2">
       <h4><strong>Especialidade</strong></h4>
@@ -19,6 +53,7 @@
       <h4><strong>Bairro</strong></h4>
     </div>
   </div>
+</div>
 
   <div class="row">
     <div class="col-md-2 col-md-offset-2">
@@ -38,31 +73,15 @@
 
   <% end %> 
 
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-        <%= form_for :search_form, :html => {:class => "form-horizontal"}, url: doctors_results_path do |s| %>
-	<h4>
-		<strong>
-			Procurar pelo Nome:
-		</strong>
-	</h4>
-	<div class="input-group">
-		<%= s.text_field :name, class: "form-control input-lg" %>
-		<span class="input-group-btn">
-			<%= s.submit :'Buscar', { :class=>"btn btn-primary btn-lg" } %>
-		</span>
-	</div>
-
-          <% end %> 
-    </div>
-
   </div>
-
 </div>
-<div class = "container">
-  <h3><strong>Quem Somos</strong></h3>
+</div>
+<div class = "container jumbotron" style=" background: rgba(255, 255, 255, 1);">
+  <h2><strong>Quem Somos</strong></h2>
   <p>O MeuMédico é uma startup criada no ano de 2015, que fornece serviços de agendamento na área de saúde. Nossos serviços permitem maior aproveitamento dos horários do médico, que por sua vez não necessitará de uma secretária para marcar suas consultas; e facilita a vida do paciente, que passa a ter total acesso à agenda de seu médico.</p>
   <p>O site também permite a pesquisa de médicos, através de campos simples, como Plano de Saúde, Especialidade do Médico e localização. É uma forma de reduzir o tempo que o paciente perderia pesquisando. </p>
-  </br>
-  <h3><strong>Origem</strong></h3>
-  <p>A startup nasceu da participação dos atuais diretores de uma <en>Hackaton</en>, nome dado ao que se chama de maratona de programação, evento no qual os participantes passam dias programando suas ideias non-stop.</p>  
+  </br> 
+
+  <h2><strong>Origem</strong></h2>
+  <p>A startup nasceu da participação dos atuais diretores de uma <en>Hackaton</en>, nome dado ao que se chama de maratona de programação, evento no qual os participantes passam dias programando suas ideias non-stop.</p>
+</div>
