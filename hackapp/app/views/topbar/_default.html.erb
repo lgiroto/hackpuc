@@ -12,7 +12,9 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li <% if active_button == "home" %>class="active"<%end%>>
-          <%= link_to "<span class='glyphicon glyphicon-home' aria-hidden='true'></span> Página Inicial".html_safe , home_index_path %>
+          <% if logged_in? %> <%= link_to "<span class='glyphicon glyphicon-search' aria-hidden='true'></span> Buscar".html_safe , home_index_path %> <% else %>
+            <%= link_to "<span class='glyphicon glyphicon-home' aria-hidden='true'></span> Página Inicial".html_safe , home_index_path %>
+          <% end %>
         </li>
         <li <% if active_button == "about" %>class="active"<%end%>>
           <%= link_to "<span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> Entrar em Contato".html_safe, about_index_path %>
