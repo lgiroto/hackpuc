@@ -12,6 +12,8 @@ class DoctorsController < ApplicationController
       @validate[:address] = 0
       @validate[:healthPlans] = 0
       @validate[:specialty] = 0
+
+      @doctor = Doctor.new
   end
 
   def index
@@ -64,6 +66,7 @@ class DoctorsController < ApplicationController
     end
 
     if @temp[:name].blank? || @temp[:password].blank? || @temp[:email].blank? || @temp[:specialty].blank? || @temp[:healthPlans].blank? || @temp[:address].blank? || @temp[:neighborhood].blank? || @temp[:city].blank? || @temp[:crm].blank?
+      @doctor ||= Doctor.new(doctor_params)
       render "register" 
       else
 
@@ -83,6 +86,7 @@ class DoctorsController < ApplicationController
       @user_info = @doctor
  
     else
+      @doctor ||= Doctor.new(doctor_params)
        @erro = true
        render 'register'
      end

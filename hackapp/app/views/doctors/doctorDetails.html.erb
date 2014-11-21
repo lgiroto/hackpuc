@@ -86,18 +86,21 @@
 				<h2>
 					<%= @doctor.name %>
 				</h2>
+				<h4>
+					Avaliação: 8.5 / 10.0
+				</h4>
+				<h4>
+					<small><a href=# disabled="disabled">6 comentários</a></small>
+					<% if logged_in? %>
+						/ <small><%= link_to "enviar avaliação", doctors_reviews_path(@doctor),{ :disabled => "disabled"} %></small>
+					<% end %>
+				</h4>
 				<p><span style="font-weight: bold;" >Área:</span> <%= @doctor.specialty %></p>
 				<p><span style="font-weight: bold;" >Email:</span> <%= @doctor.email %></p>
-				<p><span style="font-weight: bold;" >CRM:</span> <%= @doctor.crm %></p>
 				<p><span style="font-weight: bold;" >Planos de Saúde:</span> <%= @doctor.healthPlans %></p>
 				<p><span style="font-weight: bold;" >Endereço:</span> <%= @doctor.city %>, <%= @doctor.neighborhood %>, <%= @doctor.address %></p>
 
 				<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@doctor.latitude}%2C#{@doctor.longitude}"%>
-				<% if logged_in? %>
-					<div style="padding: 10px;">
-					<%= link_to "Avaliar Médico", doctors_reviews_path(@doctor),{:class => "btn btn-info btn-block"} %>
-					</div>
-				<% end %>
 			</div>
 		</div>
 		<div class="col-md-offset-1 col-md-6" >

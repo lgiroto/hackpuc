@@ -104,58 +104,58 @@
 			<% end %>
 
 			<%= form_for :doctor_form, :html => {:class => "form-horizontal"}, url: doctors_new_path do |u| %>
-				<div class="form-group">
+				<div class="form-group <% if @validate[:name] == 1 %>has-error<%end%>">
 					<%= u.label :name, "Nome", class: "col-md-3 control-label" %>
 			        <div class="col-md-9">
-			          <%= u.text_field :name, class: "form-control", placeholder: "Nome" %>
+			          <%= u.text_field :name, class: "form-control", placeholder: "Nome", value: @doctor.name %>
 			        </div>
 				</div>
-				<div class="form-group <% if @erro == true %>has-error<%end%>">
+				<div class="form-group <% if @erro == true || @validate[:email] %>has-error<%end%>">
 					<%= u.label :email, "Email", class: "col-md-3 control-label" %>
 			        <div class="col-md-6">
-			          <%= u.email_field :email, class: "form-control", placeholder: "Email" %>
+			          <%= u.email_field :email, class: "form-control", placeholder: "Email", value: @doctor.email %>
 			        </div>
 				</div>
-				<div class="form-group">
+				<div class="form-group <% if @validate[:password] == 1 %>has-error<%end%>">
 					<%= u.label :password, "Senha", class: "col-md-3 control-label" %>
 			        <div class="col-md-6">
-			          <%= u.password_field :password, class: "form-control", placeholder: "Senha" %>
+			          <%= u.password_field :password, class: "form-control", placeholder: "Senha", value: @doctor.password %>
 			        </div>
 				</div>
-				<div class="form-group">
+				<div class="form-group <% if @validate[:crm] == 1 %>has-error<%end%>">
 					<%= u.label :crm, "CRM", class: "col-md-3 control-label" %>
 			        <div class="col-md-6">
-			          <%= u.text_field :crm, class: "form-control", placeholder: "CRM" %>
+			          <%= u.text_field :crm, class: "form-control", placeholder: "CRM", value: @doctor.crm %>
 			        </div>
 				</div>
-				<div class="form-group">
+				<div class="form-group <% if @validate[:city] == 1 %>has-error<%end%>">
 					<%= u.label :city, "Cidade", class: "col-md-3 control-label" %>
 			        <div class="col-md-6">
-			          <%= u.text_field :city, class: "form-control", placeholder: "Cidade" %>
+			          <%= u.text_field :city, class: "form-control", placeholder: "Cidade", value: @doctor.city %>
 			        </div>
 				</div>
-				<div class="form-group">
+				<div class="form-group <% if @validate[:neighborhood] == 1 %>has-error<%end%>">
 					<%= u.label :neighborhood, "Bairro", class: "col-md-3 control-label" %>
 			        <div class="col-md-6">
-			          <%= u.text_field :neighborhood, class: "form-control", placeholder: "Bairro" %>
+			          <%= u.text_field :neighborhood, class: "form-control", placeholder: "Bairro", value: @doctor.neighborhood %>
 			        </div>
 				</div>
-				<div class="form-group">
+				<div class="form-group <% if @validate[:address] == 1 %>has-error<%end%>">
 					<%= u.label :address, "Endereço", class: "col-md-3 control-label" %>
 			        <div class="col-md-9">
-			          <%= u.text_field :address, class: "form-control", placeholder: "Endereço" %>
+			          <%= u.text_field :address, class: "form-control", placeholder: "Endereço", value: @doctor.address %>
 			        </div>
 				</div>
-				<div class="form-group">
+				<div class="form-group <% if @validate[:healthPlans] == 1 %>has-error<%end%>">
 					<%= u.label :healthPlans, "Plano de Saúde", class: "col-md-3 control-label" %>
 			        <div class="col-md-6">
-			          <%= u.text_field :healthPlans, class: "form-control", placeholder: "Plano de Saúde" %>
+			          <%= u.text_field :healthPlans, class: "form-control", placeholder: "Plano de Saúde", value: @doctor.healthPlans %>
 			        </div>
 				</div>
-				<div class="form-group">
+				<div class="form-group <% if @validate[:specialty] == 1 %>has-error<%end%>">
 					<%= u.label :specialty, "Especialidade", class: "col-md-3 control-label" %>
 			        <div class="col-md-6">
-			          <%= u.text_field :specialty, class: "form-control", placeholder: "Especialidade" %>
+			          <%= u.text_field :specialty, class: "form-control", placeholder: "Especialidade", value: @doctor.specialty %>
 			        </div>
 				</div>
 				<div class="form-group">
