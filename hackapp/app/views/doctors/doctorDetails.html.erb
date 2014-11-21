@@ -67,9 +67,15 @@
 						<div class="panel panel-default">
 							<div class="panel-body">
 								<h2 class="text-center">
-								    <span class="glyphicon glyphicon-th"></span>
-								    <br/>
-									Clique ao lado para Agendamento
+									<% if logged_in? %>
+									    <span class="glyphicon glyphicon-th"></span>
+									    <br/>
+										Clique ao lado para Agendamento
+									<% else %>
+										Faça Login para Agendamento
+										<br/>
+										<%= link_to "Login", login_path ,{:class => "btn btn-primary btn-lg"} %>
+									<% end %>
 								</h2>
 							</div>
 						</div>
