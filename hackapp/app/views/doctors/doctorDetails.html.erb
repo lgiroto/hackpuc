@@ -5,115 +5,108 @@
 </style>
 
 <div class="container" >
+
+
 	<div class="row">
-		<div class="col-md-6 well" >
-			<h2>Detalhes do Médico	</h2>
-			<p><span style="font-weight: bold;" >Nome:</span> <%= @doctor.name %></p>
-			<p><span style="font-weight: bold;" >Área:</span> <%= @doctor.specialty %></p>
-			<p><span style="font-weight: bold;" >Email:</span> <%= @doctor.email %></p>
-			<p><span style="font-weight: bold;" >CRM:</span> <%= @doctor.crm %></p>
-			<p><span style="font-weight: bold;" >Endereço:</span> <%= @doctor.address %></p>
-			<p><span style="font-weight: bold;" >Planos de Saúde:</span> <%= @doctor.healthPlans %></p>
-			<p><span style="font-weight: bold;" >Latitude:</span> <%= @doctor.latitude %></p>
-			<p><span style="font-weight: bold;" >Longitude:</span> <%= @doctor.longitude %></p>
-		</div>
-		<div class="col-md-6 well" >
-			<h2>Localização</h2>
-			<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@doctor.latitude}%2C#{@doctor.longitude}" %>
-		</div>
-	</div>
-
-	<div class="row well">
-		<div class="col-md-8 text-center" >
-			<h2>Calendário</h2>
-			<div class="calendar" >
-				<%= month_calendar events: @schedules, next_link: ->(param, date_range) { link_to raw("&raquo;"), { param => date_range.last + 1.day, :doctor => @doctor }  }, previous_link: ->(param, date_range) { link_to raw("&laquo;"), { param => date_range.first - 1.day, :doctor => @doctor }  }  do |date, schedules|  %>
-				  	
-				  	<%= date.strftime("%e") %>
-
-					<!-- <% if schedules.length > 0 %>
-						<% schedules.each do |schedule| %>
-							<% if schedule.calendarID == @doctor.calendarID && schedule.date == date %>
-								<div style="color: red;" >
-									<p>Horarios Indisponíveis</p>
-								</div>
-							<% else %>
-								
-							<% end %>
-						<% end %>
-					<% end %> !-->
-
-					<div style="color: green;" >
-						<p>Horários Disponíveis</p>
-						<% if logged_in? %>
-							<%= link_to "Agendar", doctors_doctorDetails_path(@doctor, :date => date, :start_date => date) %>
-						<% end %>
-					</div>
-
-				<% end %>
-			</div>
-		</div>
-
-		<% if @date != '' %>
-			<div class="col-md-4 well" >
-				<h4>Agendar consulta</h4>
-				<p><strong>Data:</strong> <%= Date.parse(@date).strftime("%d/%m/%Y") %></p>
-				<table class="table table-striped" >
-					<thead>
-						<tr>
-							<th>Horários Disponíveis</th>
-						</tr>
-					</thead>
-					<tbody>
-						<% while @hours < 24 %>
-							<% if @schedules.length > 0 %>
-								<% @schedules.each do |schedule| %>
+		<div class="col-md-5" >
+			<div class="row" style="padding: 30px;">
+			<% if @date != '' %>
+						<div class="col-md-12 text-center">
+							<h2 class="text-center">Horários Disponíveis <br/> Dia <%= Date.parse(@date).strftime("%d/%m/%Y") %></h2>
+						</div>
+						<% if @schedules.length > 0 %>
+							<% while @hours < 24 %>
+								<% @schedules.each do |schedule| %>	
 								  	<% if schedule.hour == @hours %>
-									    <tr style="color: red;" >
-									    	<td><%= @hours %>h - Horario marcado</td>
-									    </tr>
+								  		<% @isScheduled = true %>
+							  		<% end %>
+						  		<% end %>
+						  		<% if @isScheduled == true %>
+								    	<div class="col-md-3">
+								    		<strong style="color: red;"><%= @hours %>h</strong>
+								    		<div class="btn btn-danger btn-block" disabled="disabled">
+								    			Ocupado
+								    		</div>
+								    	</div>
+								<% else  %>
+								    	<div class="col-md-3">
 
-										<% @hours = @hours + 1 %>
-									<% else  %>
-										<tr style="color: green;" >
-									    	<td>
-									    		<%= form_for :schedule_form, url: doctors_createSchedule_path do |s| %>
-											
-												    <%= hidden_field_tag(:date, @date) %>
-												    <%= hidden_field_tag(:hour, @hours) %>
-												    <%= hidden_field_tag(:calendarID, @doctor.calendarID) %>
-												    <%= hidden_field_tag(:userID, current_user.id) %>
-										   			<%= hidden_field_tag(:doctor, @doctor.id) %>
-													<%= @hours %>h - <%= s.submit :"Agendar", class: "btn btn-primary" %>
+								    		<%= form_for :schedule_form, url: doctors_createSchedule_path(@doctor) do |s| %>
+										
+											    <%= hidden_field_tag(:date, @date) %>
+											    <%= hidden_field_tag(:hour, @hours) %>
+											    <%= hidden_field_tag(:calendarID, @doctor.calendarID) %>
+											    <%= hidden_field_tag(:userID, current_user.id) %>
+												<strong  style="color: green;" ><%= @hours %>h</strong> <%= s.submit :"Agendar", class: "btn btn-success btn-block" %>
 
-												<% end %>
-
-													<% @hours = @hours + 1 %>
-									    	</td>
-									    </tr>
-								    <% end %>
+											<% end %>
+								    	</div>
 								<% end %>
-							<% else %>
-								<tr style="color: green;" >
-							    	<td>
-							    		<%= form_for :schedule_form, url: doctors_createSchedule_path do |s| %>
+						    	<% @hours = @hours + 1 %>
+						    	<% @isScheduled = false %>
+							<% end %>
+						<% else %>
+								<% while @hours < 24 %>
+							    	<div class="col-md-3">
+
+							    		<%= form_for :schedule_form, url: doctors_createSchedule_path(@doctor) do |s| %>
 									
 										    <%= hidden_field_tag(:date, @date) %>
 										    <%= hidden_field_tag(:hour, @hours) %>
 										    <%= hidden_field_tag(:calendarID, @doctor.calendarID) %>
 										    <%= hidden_field_tag(:userID, current_user.id) %>
-										    <%= hidden_field_tag(:doctor, @doctor.id) %>
-											<%= @hours %>h - <%= s.submit :'Agendar', class: "btn btn-primary" %>
+											<strong  style="color: green;" ><%= @hours %>h</strong> <%= s.submit :"Agendar", class: "btn btn-success btn-block" %>
 
 										<% end %>
-										<% @hours = @hours + 1 %>
-							    	</td>
-							    </tr>
+							    	</div>
+							    <% @hours = @hours + 1 %>
 						    <% end %>
 						<% end %>
-					</tbody>
-				</table>
-			</div>	
-		<% end %>
+				<% else %>
+					<div class="col-md-12 text-center">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<h2 class="text-center">
+								    <span class="glyphicon glyphicon-th"></span>
+								    <br/>
+									Clique ao lado para Agendamento
+								</h2>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+			<div class="row well">
+				<h2>
+					<%= @doctor.name %>
+				</h2>
+				<p><span style="font-weight: bold;" >Área:</span> <%= @doctor.specialty %></p>
+				<p><span style="font-weight: bold;" >Email:</span> <%= @doctor.email %></p>
+				<p><span style="font-weight: bold;" >CRM:</span> <%= @doctor.crm %></p>
+				<p><span style="font-weight: bold;" >Planos de Saúde:</span> <%= @doctor.healthPlans %></p>
+				<p><span style="font-weight: bold;" >Endereço:</span> <%= @doctor.city %>, <%= @doctor.neighborhood %>, <%= @doctor.address %></p>
+
+				<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@doctor.latitude}%2C#{@doctor.longitude}" %>
+			</div>
+		</div>
+		<div class="col-md-offset-1 col-md-6" >
+			<div class="row">
+				<div class="calendar text-center" >
+					<%= month_calendar events: @schedules, next_link: ->(param, date_range) { link_to "   <div class='btn btn-primary'><span class='glyphicon glyphicon-chevron-right'></span></div>   </strong>".html_safe, { param => date_range.last + 1.day, :doctor => @doctor }  }, previous_link: ->(param, date_range) { link_to "<div class='btn btn-primary'><span class='glyphicon glyphicon-chevron-left'></span></div></a><strong style='font-size: 200%;'>    ".html_safe, { param => date_range.first - 1.day, :doctor => @doctor }  }  do |date, schedules|  %>
+					  	<h2>
+					  		<%= date.strftime("%e") %>
+					  	</h2>
+						<div style="color: green;" >
+							<p>Disponível <span class='glyphicon glyphicon glyphicon-ok'></p>
+							<% if logged_in? %>
+								<div class="row">
+								<%= link_to "Agendar", doctors_doctorDetails_path(@doctor, :date => date, :start_date => date),{:class => "btn btn-info btn-sm"} %>
+								</div>
+							<% end %>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
