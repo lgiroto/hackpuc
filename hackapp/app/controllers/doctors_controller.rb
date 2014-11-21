@@ -3,6 +3,13 @@ class DoctorsController < ApplicationController
       @erro = false
   end
 
+  def index
+    @hash = Gmaps4rails.build_markers(@doctors) do |doctor, marker|
+      marker.lat doctor.latitude
+      marker.lng doctor.longitude
+    end
+  end
+
   def new
 
   doctor_search = Doctor.find_by(email: params[:doctor_form][:email])

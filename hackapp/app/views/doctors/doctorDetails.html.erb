@@ -14,10 +14,12 @@
 			<p><span style="font-weight: bold;" >CRM:</span> <%= @doctor.crm %></p>
 			<p><span style="font-weight: bold;" >Endereço:</span> <%= @doctor.address %></p>
 			<p><span style="font-weight: bold;" >Planos de Saúde:</span> <%= @doctor.healthPlans %></p>
+			<p><span style="font-weight: bold;" >Latitude:</span> <%= @doctor.latitude %></p>
+			<p><span style="font-weight: bold;" >Longitude:</span> <%= @doctor.longitude %></p>
 		</div>
 		<div class="col-md-6 well" >
-			<h2>Descrição</h2>
-			<p>Adhd allergen bronchial tubes cancer contagious dehydration dna dyslexia epidermis epiglottis exchange meal plan glycosylated hemoglobin test (hemoglobin a1c) heredity inhaler lung function tests melanin oncologist operation orthodontist pinna retainer spinal tap surgery varicella zoster virus. Alcoholism allergy astringents bacteria cartilage chromosomes dislocation epidermis epiglottis fats fatty acids fever glycosylated hemoglobin test (hemoglobin a1c) inhale islet cells ketoacidosis microscope myopia nephropathy nicotine pancreas rescue medications scar skin test tragus. Abrasion addiction glycosylated hemoglobin test (hemoglobin a1c) malocclusion melanin nearsighted optician otitis media sebaceous glands skin test.</p>
+			<h2>Localização</h2>
+			<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@doctor.latitude}%2C#{@doctor.longitude}" %>
 		</div>
 	</div>
 
