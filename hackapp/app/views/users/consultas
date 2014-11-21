@@ -1,1 +1,12 @@
 <%= render partial: "topbar/default", locals: {active_button: "minhas_cons_us"} %>
+
+
+<%= unless @user_sched_search.nil? %>
+	<%= form_for @user_sched_search do |s| %>
+	   <%= hidden_field_tag(:date, s.date) %>
+	    <%= hidden_field_tag(:hour, s.hours) %>
+	    <%= hidden_field_tag(:calendarID, s.doctor.calendarID) %>
+	    <%= hidden_field_tag(:userID, s.current_user.id) %>
+		<strong  style="color: green;" ><%= @hours %>h</strong> <%= s.submit :"Agendar", class: "btn btn-success btn-block" %>
+	<% end %>
+<% end %>
