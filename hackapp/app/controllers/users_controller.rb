@@ -50,6 +50,10 @@ class UsersController < ApplicationController
        	end
 	end
 
+	def consultas
+		@schedules = Schedules.where :userID => current_user.id
+	end
+
 	  def showAll
 	    @allusers = User.all
 	  end
