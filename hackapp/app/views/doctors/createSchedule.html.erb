@@ -31,6 +31,31 @@
 					</p>
 				</div>
 			</div>
+			
+			<h4>
+				Insira o seu número de telefone abaixo para enviarmos um SMS com os dados do agendamento.
+			</h4>
+			<%= form_for :sms_form, :html => {:class => "form-horizontal"}, url: sms_sendSMS_path do |s| %>
+				<%= hidden_field_tag(:city, @doctor.city) %>
+				<%= hidden_field_tag(:neighborhood, @doctor.neighborhood) %>
+				<%= hidden_field_tag(:address, @doctor.address) %>
+			    <%= hidden_field_tag(:date, Date.parse(@schedule.date).strftime("%d/%m/%Y")) %>
+			    <%= hidden_field_tag(:hour, @schedule.hour) %>
+			    <%= hidden_field_tag(:doc_name, @doctor.name) %>
+			    <%= hidden_field_tag(:doc, @doctor.id) %>
+				<div class="form-group">
+					<%= s.label :tel, "Telefone", class: "col-md-2 control-label" %>
+			        <div class="col-md-10">
+			          <%= s.text_field :tel, class: "form-control", placeholder: "+552190000000" %>
+			        </div>
+				</div>
+				<div class="form-group">
+				    <div class="col-md-offset-2 col-md-10">
+						<%= s.submit :'Enviar SMS', class: "btn btn-primary" %>
+				    </div>
+				</div>
+			<% end %>
+
 			<div class="row text-center">
 					<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@doctor.latitude}%2C#{@doctor.longitude}"%>
 			</div>

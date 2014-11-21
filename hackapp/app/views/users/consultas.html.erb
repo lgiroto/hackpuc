@@ -1,0 +1,26 @@
+<%= render partial: "topbar/default", locals: {active_button: "minhas_cons_us"} %>
+<div class="container">
+	<h2>Minhas Consultas</h2>
+	<table class="table table-striped" >
+		<thead>
+			<tr>
+				<th>Médico</th>
+				<th>Data</th>
+				<th>Horário</th>
+				<th>Endereço</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @schedules.each do |schedule| %>	
+			  	<% @doctor = Doctor.find(schedule.calendarID) %>
+			  	<tr>
+			  		<td><%= @doctor.name %></td>
+			  		<td><%= Date.parse(schedule.date).strftime("%d/%m/%Y") %></td>
+			  		<td><%= schedule.hour %>h</td>
+			  		<td><%= @doctor.address %></td>
+			  	</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
