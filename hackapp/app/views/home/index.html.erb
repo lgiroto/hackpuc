@@ -52,38 +52,19 @@
             </div>
           </div>
         </div>
-
-<!--           <div class="row">
-            <div class="col-md-2 col-md-offset-2">
-              <%= select_tag(:specialty, options_for_select([['---', ''],['Cardiologia', 'cardiologia'], ['Pediatria', 'Pediatria'], ['Ginecologia', 'Ginecologia']]), { :class=>"form-control input-lg", :style=>"margin-bottom: 30%;"}) %>
-            </div> -->
-          
-
+      
           <div class="row">
             <div class="col-md-2 col-md-offset-2">
               <%= select_tag(:specialty, options_for_select(@espec_toprint), { :class=>"form-control input-lg", :style=>"margin-bottom: 30%;"}) %>
             </div>
+        
+            <div class="col-md-2">
+              <%= select_tag(:healthPlans, options_for_select(@plano_toprint), { :class=>"form-control input-lg", :style=>"margin-bottom: 30%;"}) %>
+            </div>
 
-
-
-<!--     <div class="col-md-2">
-      <%= select_tag(:healthPlans, options_for_select([['---', ''],['Unimed', 'Unimed'], ['Bradesco', 'Bradesco'], ['Golden Cross', 'Golden Cross'], ['Amil', 'Amil']]), { :class=>"form-control input-lg", :style=>"margin-bottom: 30%;"}) %>
-    </div>
- -->
-    <div class="col-md-2">
-      <%= select_tag(:healthPlans, options_for_select(@plano_toprint), { :class=>"form-control input-lg", :style=>"margin-bottom: 30%;"}) %>
-    </div>
-
-
- <!--          <div class="col-md-2">
-            <%= select_tag(:neighborhood, options_for_select([['---', ''],['Barra da Tijuca', 'Barra da Tijuca'], ['Tijuca', 'Tijuca'], ['Leblon', 'Leblon'], ['Madureira', 'Madureira']]), { :class=>"form-control input-lg", :style=>"margin-bottom: 30%;"}) %>
-          </div>
- -->
-
--          <div class="col-md-2">
-            <%= select_tag(:neighborhood, options_for_select(@bairro_toprint), { :class=>"form-control input-lg", :style=>"margin-bottom: 30%;"}) %>
-          </div>
- -->
+            <div class="col-md-2">
+              <%= select_tag(:neighborhood, options_for_select(@bairro_toprint), { :class=>"form-control input-lg", :style=>"margin-bottom: 30%;"}) %>
+              </div>
 
           <%= s.submit :'Buscar', { :class=>"btn btn-primary btn-lg" } %>
         <% end %>

@@ -31,5 +31,9 @@ class HomeController < ApplicationController
 	  	@bairro.each do |variable|
 	  		@bairro_toprint.push([variable,variable])
 	  	end
+
+	  	@espec_toprint = @espec_toprint.uniq
+	  	@plano_toprint = @plano_toprint.uniq
+	  	@bairro_toprint = @bairro_toprint.uniq
 	end
 end

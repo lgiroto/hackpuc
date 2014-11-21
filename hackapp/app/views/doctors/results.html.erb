@@ -6,17 +6,19 @@
   <div class = "row">
     <div class= "col-md-2">
       <h4><strong>Especialidade</strong></h4>
-      <%= select_tag(:specialty, options_for_select([['---', ''],['Cardiologia', 'Cardiologista'], ['Pediatria', 'Pediatria'], ['Ginecologia', 'Ginecologia']]), { :class=>"form-control input-lg", :style=>"margin-bottom: 10%;"}) %>
+      <%= select_tag(:specialty, options_for_select(@espec_toprint), { :class=>"form-control input-lg", :style=>"margin-bottom: 10%;"}) %>
     </div>
+<!-- 
+    <%= select_tag(:specialty, options_for_select(@espec_toprint), { :class=>"form-control input-lg", :style=>"margin-bottom: 30%;"}) %> -->
 
     <div class= "col-md-2">
       <h4><strong>Plano de Saúde</strong></h4>
-      <%= select_tag(:healthPlans, options_for_select([['---', ''],['Unimed', 'Unimed'], ['Bradesco', 'Bradesco'], ['Golden Cross', 'Golden Cross'], ['Amil', 'Amil']]), { :class=>"form-control input-lg", :style=>"margin-bottom: 10%;"}) %>
+      <%= select_tag(:healthPlans, options_for_select(@plano_toprint), { :class=>"form-control input-lg", :style=>"margin-bottom: 10%;"}) %>
     </div>
 
     <div class= "col-md-2">
       <h4><strong>Bairro</strong></h4>
-      <%= select_tag(:neighborhood, options_for_select([['---', ''],['Barra da Tijuca', 'Barra da Tijuca'], ['Tijuca', 'Tijuca'], ['Leblon', 'Leblon'], ['Madureira', 'Madureira']]), { :class=>"form-control input-lg", :style=>"margin-bottom: 10%;"}) %>
+      <%= select_tag(:neighborhood, options_for_select(@bairro_toprint), { :class=>"form-control input-lg", :style=>"margin-bottom: 10%;"}) %>
     </div>
 
     <div class="col-md-2" >

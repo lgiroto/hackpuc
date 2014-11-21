@@ -31,6 +31,44 @@ class DoctorsController < ApplicationController
   end
 
   def results
+
+    allusers = Doctor.all
+      
+    @especialidades = Array.new
+    @planos = Array.new
+    @bairro = Array.new
+      
+    @espec_toprint = Array.new
+    @plano_toprint = Array.new
+    @bairro_toprint = Array.new
+
+    @espec_toprint.push(['---',''])
+    @plano_toprint.push(['---',''])
+    @bairro_toprint.push(['---',''])
+
+    allusers.each do |variable|
+      @especialidades.push(variable[:specialty])
+      @planos.push(variable[:healthPlans])
+      @bairro.push(variable[:neighborhood])
+    end
+
+    @especialidades.each do |variable|
+      @espec_toprint.push([variable,variable])
+    end
+
+    @planos.each do |variable|
+      @plano_toprint.push([variable,variable])
+    end
+
+    @bairro.each do |variable|
+      @bairro_toprint.push([variable,variable])
+    end 
+
+    @espec_toprint = @espec_toprint.uniq
+    @plano_toprint = @plano_toprint.uniq
+    @bairro_toprint = @bairro_toprint.uniq
+
+
   	@doctorsResults = Doctor.all
   	if params[:neighborhood] && params[:neighborhood] != ''
   		@doctorsResults = @doctorsResults.select { |doctorsResult| doctorsResult.neighborhood == params[:neighborhood] }
