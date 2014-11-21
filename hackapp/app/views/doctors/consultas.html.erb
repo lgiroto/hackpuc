@@ -1,0 +1,37 @@
+<%= render partial: "topbar/default", locals: {active_button: "minhas_cons_med"} %>
+
+<style type="text/css">
+	.calendar td { border: 1px solid; padding: 1% 2%;  }
+	table { margin-top: 20px;}
+</style>
+
+<div class="container" >
+	<h2>Meus Pacientes</h2>
+	<div class="col-md-offset-1 col-md-8" >
+		<div class="row">
+			<div class="calendar text-center" >
+				<%= month_calendar events: @schedules, next_link: ->(param, date_range) { link_to "   <div class='btn btn-primary'><span class='glyphicon glyphicon-chevron-right'></span></div>   </strong>".html_safe, { param => date_range.last + 1.day, :doctor => @doctor }  }, previous_link: ->(param, date_range) { link_to "<div class='btn btn-primary'><span class='glyphicon glyphicon-chevron-left'></span></div></a><strong style='font-size: 200%;'>".html_safe, { param => date_range.first - 1.day, :doctor => @doctor }  }  do |date, schedules|  %>
+				  	<h2>
+				  		<%= date.strftime("%e") %>
+				  	</h2>
+					<% if schedules.length > 0 %>
+						<% schedules.each do |schedule| %>	
+							<% if Date.parse(schedule.date).strftime("%e") == date.strftime("%e") %>
+								<% @user = User.find(schedule.userID) %>
+								<% @isSchedualed = true %>
+							<% end %>
+						<% end %>
+
+					    <% if @isScheduled == true %>
+					    	<p style="color: green;" ><%= schedule.hour %>h - <%= @user.name %></p>
+						<% else %>
+							<p>Horário Disponível</p>
+						<% end %>
+
+					    <% @isScheduled = false %>
+				    <% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

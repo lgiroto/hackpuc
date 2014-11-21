@@ -1,1 +1,0 @@
-<%= render partial: "topbar/default", locals: {active_button: "minhas_cons_med"} %>

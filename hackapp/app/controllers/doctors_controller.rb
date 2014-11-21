@@ -15,6 +15,8 @@ class DoctorsController < ApplicationController
   doctor_search = Doctor.find_by(email: params[:doctor_form][:email])
   if doctor_search.nil?
       @doctor = Doctor.new(doctor_params)
+      @total = Doctor.all
+      @doctor.calendarID = @total.length + 1
       @doctor.save
       # UserNotifier.send_signup_email(@user).deliver
 
@@ -85,6 +87,12 @@ class DoctorsController < ApplicationController
 
   def reviews
     @doctor = Doctor.find(params[:format])
+  end
+
+  def consultas
+    @isSchedualed = false
+    @doctor = Doctor.find(current_user.id)
+    @schedules = Schedules.where :calendarID => @doctor.calendarID
   end
   
   private
