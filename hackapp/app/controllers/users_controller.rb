@@ -36,14 +36,14 @@ class UsersController < ApplicationController
 			@user = User.new(user_params)
 
 		 	 	@user.save
-      	# UserNotifier.send_signup_email(@user).deliver
+      			UserNotifier.send_signup_email(@user).deliver
        			@erro = false
       			session[:user_type] = 'user'
 				log_in @user
        			@user_info = @user
        		else
        			@validate[:email] = 2
-       		#flash.now[:danger] = "Erro: Email já cadastrado!"
+       			#flash.now[:danger] = "Erro: Email já cadastrado!"
        			@erro = true
        			render 'register'
        		end

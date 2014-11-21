@@ -110,7 +110,7 @@
 			          <%= u.text_field :name, class: "form-control", placeholder: "Nome", value: @doctor.name %>
 			        </div>
 				</div>
-				<div class="form-group <% if @erro == true || @validate[:email] %>has-error<%end%>">
+				<div class="form-group <% if @erro == true || @validate[:email] == 1 %>has-error<%end%>">
 					<%= u.label :email, "Email", class: "col-md-3 control-label" %>
 			        <div class="col-md-6">
 			          <%= u.email_field :email, class: "form-control", placeholder: "Email", value: @doctor.email %>

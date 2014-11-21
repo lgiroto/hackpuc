@@ -79,6 +79,7 @@ class DoctorsController < ApplicationController
       @doctor.calendarID = @total.length + 1
       @doctor.save
       # UserNotifier.send_signup_email(@user).deliver
+      UserNotifier.send_signup_email(@doctor).deliver
 
       @erro = false
       session[:user_type] = 'doctor'
