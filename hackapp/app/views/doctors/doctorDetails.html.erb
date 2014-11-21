@@ -43,7 +43,9 @@
 
 					<div style="color: green;" >
 						<p>Horários Disponíveis</p>
-						<%= link_to "Agendar", doctors_doctorDetails_path(@doctor, :date => date, :start_date => date) %>
+						<% if logged_in? %>
+							<%= link_to "Agendar", doctors_doctorDetails_path(@doctor, :date => date, :start_date => date) %>
+						<% end %>
 					</div>
 
 				<% end %>
