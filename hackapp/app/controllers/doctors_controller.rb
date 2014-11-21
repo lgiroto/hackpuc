@@ -81,8 +81,7 @@ class DoctorsController < ApplicationController
 
     # Recupera informações do Doctor
     @doctor = Doctor.find(params[:format])
-    @schedule = @newSchedule  
-
+    @schedule = @newSchedule
     #redirect_to :controller => 'doctors', :action => 'doctorDetails', :doctor => params[:doctor], :date => @date
   end
 
