@@ -1,0 +1,44 @@
+<%= render partial: "topbar/default", locals: {active_button: "none"} %>
+
+<style type="text/css">
+	.calendar td { border: 1px solid; padding: 1% 2%;  }
+</style>
+
+<div class="container" >
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 well" >
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Agendamento</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="alert alert-success" role="alert">
+						<strong>Sucesso!</strong>
+						Seu cadastro foi realizado com sucesso!
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<h3>Consulta para <%= Date.parse(@schedule.date).strftime("%d/%m/%Y") %>
+					às <%= @schedule.hour %> horas</h3>
+					<p>
+						<strong>Médico:</strong> <%= @doctor.name %>
+						<br/>
+						<strong>Endereço:</strong> <%= @doctor.city %>, <%= @doctor.neighborhood %>, <%= @doctor.address %>
+					</p>
+				</div>
+			</div>
+			<div class="row text-center">
+					<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@doctor.latitude}%2C#{@doctor.longitude}"%>
+			</div>
+			<div class="row">
+				<div class="col-md-12" style="padding: 30px;">
+					<%= link_to "Voltar", doctors_doctorDetails_path(@doctor) ,{:class => "btn btn-primary btn-block btn-lg"} %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

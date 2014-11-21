@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post 'doctors/doctorDetails'
   get 'doctors/createSchedule'
   post 'doctors/createSchedule'
+  get 'doctors/reviews'
+  post 'doctors/reviews'
   get 'about/index'
   post 'about/sendMessage'
   post 'users/new'
@@ -21,6 +23,7 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
   get 'users/consultas'
   get 'doctors/consultas'
+  get 'users/prescricoes'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
