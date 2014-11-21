@@ -1,5 +1,6 @@
 <%= render partial: "topbar/default", locals: {active_button: "register"} %>
 
+<<<<<<< HEAD
 <div class="container jumbotron">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-1">
@@ -10,6 +11,111 @@
 				<div class="alert alert-danger" role="alert">
 					<strong>Erro!</strong>
 					Já existe um usuário com este e-mail registrado.
+=======
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-1">
+					<h1>
+						Cadastro de Usuário:
+					</h1>
+<!--					<% flash.each do |key, value| %>
+						<%= content_tag(:div, value, class: "alert alert-#{key}") %>
+					<% end %>
+-->							<% if @validate[:name] == 1 %>
+			<div class="row">
+				<div class = "col-md-12">
+					<div class="alert alert-danger" role="alert">
+						Você esqueceu de colocar o <strong>nome</strong>!
+					</div>
+				</div>
+			</div>
+		<% end %>
+
+		<% if @validate[:email] == 1 %>
+			<div class="row">
+				<div class = "col-md-12">
+					<div class="alert alert-danger" role="alert">
+						Você não colocou o seu <strong>e-mail</strong>!
+					</div>
+				</div>
+			</div>
+		<% end %>
+
+		<% if @validate[:email] == 2 %>
+			<div class="row">
+				<div class = "col-md-12">
+					<div class="alert alert-danger" role="alert">
+						Seu cadastro não pode ser efetuado pois já existe alguém cadastrado com esse e-mail
+					</div>
+				</div>
+			</div>
+		<% end %>
+
+		<% if @validate[:password] == 1 %>
+			<div class="row">
+				<div class = "col-md-12">
+					<div class="alert alert-danger" role="alert">
+						Você não escreveu a sua <strong>senha</strong>!
+					</div>
+				</div>
+			</div>
+		<% end %>
+
+					<%= form_for :user_form, :html => {:class => "form-horizontal"}, url: users_new_path do |u| %>
+						<div class="form-group">
+							<%= u.label :name, "Nome", class: "col-md-2 control-label" %>
+					        <div class="col-md-10">
+					          <%= u.text_field :name, class: "form-control", placeholder: "Nome" %>
+					        </div>
+						</div>
+						<div class="form-group">
+							<%= u.label :email, "Email", class: "col-md-2 control-label" %>
+					        <div class="col-md-6">
+					          <%= u.email_field :email, class: "form-control", placeholder: "Email" %>
+					        </div>
+						</div>
+						<div class="form-group">
+							<%= u.label :password, "Senha", class: "col-md-2 control-label" %>
+					        <div class="col-md-6">
+					          <%= u.password_field :password, class: "form-control", placeholder: "Senha" %>
+					        </div>
+						</div>
+						<div class="form-group">
+						    <div class="col-md-offset-2 col-md-10">
+								<%= u.submit :'Cadastrar', class: "btn btn-primary btn-lg" %>
+						    </div>
+						</div>
+					<% end %>
+				<!--
+					<form class="form-horizontal" role="form">
+					  <div class="form-group">
+					    <label for="inputName" class="col-md-2 control-label">Nome</label>
+					    <div class="col-md-10">
+					      <input type="email" class="form-control" id="inputName" placeholder="Nome">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="inputEmail" class="col-md-2 control-label">Email</label>
+					    <div class="col-md-6">
+					      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="inputPassword" class="col-md-2 control-label">Senha</label>
+					    <div class="col-md-6">
+					      <input type="password" class="form-control" id="inputPassword" placeholder="Senha">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <div class="col-md-offset-2 col-md-10">
+					      <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
+					    </div>
+					  </div>
+					</form>
+				-->
+>>>>>>> 484ea0ffb5db21eacfdd11053257aa8db368afe9
 				</div>
 			<% end %>
 			<%= form_for :user_form, :html => {:class => "form-horizontal"}, url: users_new_path do |u| %>
