@@ -86,7 +86,12 @@
 				<p><span style="font-weight: bold;" >Planos de Saúde:</span> <%= @doctor.healthPlans %></p>
 				<p><span style="font-weight: bold;" >Endereço:</span> <%= @doctor.city %>, <%= @doctor.neighborhood %>, <%= @doctor.address %></p>
 
-				<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@doctor.latitude}%2C#{@doctor.longitude}" %>
+				<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@doctor.latitude}%2C#{@doctor.longitude}"%>
+				<% if logged_in? %>
+					<div style="padding: 10px;">
+					<%= link_to "Avaliar Médico", doctors_reviews_path(@doctor),{:class => "btn btn-info btn-block"} %>
+					</div>
+				<% end %>
 			</div>
 		</div>
 		<div class="col-md-offset-1 col-md-6" >

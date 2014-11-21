@@ -14,8 +14,8 @@ class UsersController < ApplicationController
 
 		if @temp[:name].blank?
  			@validate[:name] = 1
-  		end
-		
+		end
+	
  		if @temp[:password].blank?
 			@validate[:password] = 1
 		end

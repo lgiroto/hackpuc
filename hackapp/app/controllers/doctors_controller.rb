@@ -48,6 +48,9 @@ class DoctorsController < ApplicationController
 
   def doctorDetails
     @hours = 7; # Horário de Início dos Expedientes
+    @isScheduled = false;
+
+    @rating = Feedback.where :userID
 
     if params[:format]
       @doctor = Doctor.find(params[:format])
@@ -75,12 +78,14 @@ class DoctorsController < ApplicationController
     @newSchedule.save
 
     # Recupera informações do Doctor
-    @doctor = Doctor.find(params[:doctor])
-    @date = params[:date]
-    @schedules = Schedules.where :calendarID => @doctor.calendarID
-    @schedules = @schedules.where :date => @date
+    @doctor = Doctor.find(params[:format])
+    @schedule = @newSchedule  
 
-    redirect_to :controller => 'doctors', :action => 'doctorDetails', :doctor => params[:doctor], :date => @date
+    #redirect_to :controller => 'doctors', :action => 'doctorDetails', :doctor => params[:doctor], :date => @date
+  end
+
+  def reviews
+    @doctor = Doctor.find(params[:format])
   end
   
   private

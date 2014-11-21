@@ -1,5 +1,4 @@
 <%= render partial: "topbar/default", locals: {active_button: "register"} %>
-
 <div class="container jumbotron">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-1">
@@ -7,6 +6,7 @@
 				Cadastro de Usuário:
 			</h2>
 		<% if @validate[:name] == 1 %>
+
 			<div class="row">
 				<div class = "col-md-12">
 					<div class="alert alert-danger" role="alert">
