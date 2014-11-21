@@ -1,0 +1,16 @@
+<%= render partial: "topbar/default", locals: {active_button: "none"} %>
+
+<style type="text/css">
+	.calendar td { border: 1px solid; padding: 1% 2%;  }
+</style>
+
+<div class="container" >
+	<div class="row">
+		<div class="col-md-12 well" >
+			<h2>Consulta agendada com sucesso!</h2>
+			<p><strong>Horário:</strong> <%= @schedule.hour %>h</p>
+			<p><strong>Endereço:</strong> <%= @doctor.address %></p>
+			<%= link_to "Voltar", doctors_doctorDetails_path(@doctor) %>
+		</div>
+	</div>
+</div>
