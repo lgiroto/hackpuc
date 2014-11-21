@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   		@validate[:name] = 0
   		@validate[:email] = 0
   		@validate[:message] = 0
+
+  	
 	end
 
 	def new
