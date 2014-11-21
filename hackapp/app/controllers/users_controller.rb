@@ -1,24 +1,51 @@
 class UsersController < ApplicationController
 	def register
+		@erro = false
+		@validate = Hash.new
+  		@validate[:name] = 0
+  		@validate[:email] = 0
+  		@validate[:message] = 0
 	end
 
 	def new
 
-		user_search = User.find_by(email: params[:user_form][:email])
-		if user_search.nil?
-		@user = User.new(user_params)
+		@validate = Hash.new
+		@temp = params[:user_form]
 
-	 	 	@user.save
+		if @temp[:name].blank?
+ 			@validate[:name] = 1
+  		end
+		
+ 		if @temp[:password].blank?
+			@validate[:password] = 1
+		end
+
+		if @temp[:email].blank?
+			@validate[:email] = 1
+		end
+
+		if @temp[:name].blank? || @temp[:password].blank? || @temp[:email].blank?
+			render "register" 
+   		else
+
+
+			user_search = User.find_by(email: params[:user_form][:email])
+			if user_search.nil?
+			@user = User.new(user_params)
+
+		 	 	@user.save
       	# UserNotifier.send_signup_email(@user).deliver
-      		session[:user_type] = 'user'
-			log_in @user
-       		@user_info = @user
-       	else
-
+       			@erro = false
+      			session[:user_type] = 'user'
+				log_in @user
+       			@user_info = @user
+       		else
+       			@validate[:email] = 2
        		#flash.now[:danger] = "Erro: Email já cadastrado!"
-       		render 'register'
+       			@erro = true
+       			render 'register'
+       		end
        	end
-
 	end
 
 	  def showAll
