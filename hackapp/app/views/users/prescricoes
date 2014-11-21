@@ -1,1 +1,21 @@
 <%= render partial: "topbar/default", locals: {active_button: "minhas_presc"} %>
+<div class="col-md-12 text-center">
+	<h2>Apenas o conceito</h2>
+	<table class="table table-bordered">
+		<thead>
+			<th>Remédio</th>
+			<th>Vezes por dia</th>
+			<th>Quantidade</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Isotretinoína</td>
+				<td>Uma</td>
+				<td>40 mg</td>
+			</tr>
+				<td>Vitamina C</td>
+				<td>Duas</td>
+				<td>500 mg</td>
+		</tbody>
+	</table>
+</div>

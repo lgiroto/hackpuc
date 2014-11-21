@@ -62,4 +62,8 @@ class UsersController < ApplicationController
 		def user_params
 			params.require(:user_form).permit(:name, :email, :password)
 		end
+
+	def user_sched
+		@user_sched_search = Schedules.find_by(@current_user.id)
+	end
 end
