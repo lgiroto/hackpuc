@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post 'doctors/doctorDetails'
   get 'doctors/createSchedule'
   post 'doctors/createSchedule'
+  get 'doctors/reviews'
+  post 'doctors/reviews'
   get 'about/index'
   post 'about/sendMessage'
   post 'users/new'

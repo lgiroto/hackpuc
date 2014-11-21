@@ -14,8 +14,10 @@
 			<p><span style="font-weight: bold;" >CRM:</span> <%= @doctor.crm %></p>
 			<p><span style="font-weight: bold;" >Endereço:</span> <%= @doctor.address %></p>
 			<p><span style="font-weight: bold;" >Planos de Saúde:</span> <%= @doctor.healthPlans %></p>
-			<p><span style="font-weight: bold;" >Latitude:</span> <%= @doctor.latitude %></p>
-			<p><span style="font-weight: bold;" >Longitude:</span> <%= @doctor.longitude %></p>
+			<p><span style="font-weight: bold;" >Avaliação:</span> 8,5 | 3 Reviews</p>
+			<% if logged_in? %>
+				<%= link_to "Avaliar Médico", doctors_reviews_path(@doctor) %>
+			<% end %>
 		</div>
 		<div class="col-md-6 well" >
 			<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@doctor.latitude}%2C#{@doctor.longitude}" %>
@@ -45,7 +47,7 @@
 					<div style="color: green;" >
 						<p>Horários Disponíveis</p>
 						<% if logged_in? %>
-							<%= link_to "Agendar", doctors_doctorDetails_path(@doctor, :date => date, :start_date => date) %>
+							<%= link_to "Avaliar Médico", doctors_doctorDetails_path(@doctor) %>
 						<% end %>
 					</div>
 
@@ -69,7 +71,7 @@
 
 								<% @schedules.each do |schedule| %>	
 								  	<% if schedule.hour == @hours %>
-								  		<span style="display: none;" ><%= @isScheduled = true %></span>
+								  		<% @isScheduled = true %>
 							  		<% end %>
 						  		<% end %>
 
@@ -94,7 +96,7 @@
 						  		<% end %>
 
 						    	<% @hours = @hours + 1 %>
-						    	<span style="display:none;"><%= @isScheduled = false %></span>
+						    	<% @isScheduled = false %>
 							<% end %>
 						<% else %>
 							<% while @hours < 24 %>

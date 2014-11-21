@@ -50,6 +50,8 @@ class DoctorsController < ApplicationController
     @hours = 7; # Horário de Início dos Expedientes
     @isScheduled = false;
 
+    @rating = Feedback.where :userID
+
     if params[:format]
       @doctor = Doctor.find(params[:format])
     else
@@ -80,6 +82,10 @@ class DoctorsController < ApplicationController
     @schedule = @newSchedule  
 
     #redirect_to :controller => 'doctors', :action => 'doctorDetails', :doctor => params[:doctor], :date => @date
+  end
+
+  def reviews
+    @doctor = Doctor.find(params[:format])
   end
   
   private
