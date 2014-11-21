@@ -27,11 +27,14 @@
           </p>
           <!-- Botar if para apenas o usuário? Fazer diferente para o médico? -->
           <% if session[:user_type] == 'user' %>
-            <li>
-              <%= link_to "<span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span> <strong>Minhas Consultas</strong>".html_safe, users_consultas_path %> 
+            <li <% if active_button == "minhas_cons_us" %>class="active"<%end%>>
+              <%= link_to "<span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> <strong>Minhas Consultas</strong>".html_safe, users_consultas_path %> 
+            </li>
+            <li <% if active_button == "minhas_presc" %>class="active"<%end%>>
+              <%= link_to "<span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span> <strong>Minhas Prescrições</strong>".html_safe, users_prescricoes_path %> 
             </li>
           <% else %>
-            <li>
+            <li <% if active_button == "minhas_cons_med" %>class="active"<%end%>>
               <%= link_to "<span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span> <strong>Minhas Consultas</strong>".html_safe, doctors_consultas_path %>
             </li>
           <% end %>
