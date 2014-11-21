@@ -43,19 +43,19 @@
 				</div>
 			<% end %>
 			<%= form_for :user_form, :html => {:class => "form-horizontal"}, url: users_new_path do |u| %>
-				<div class="form-group">
+				<div class="form-group <% if @validate[:name] == 1 %>has-error<%end%>">
 					<%= u.label :name, "Nome", class: "col-md-2 control-label" %>
 			        <div class="col-md-10">
-			          <%= u.text_field :name, class: "form-control", placeholder: "Nome" %>
+			          <%= u.text_field :name, class: "form-control", placeholder: "Nome", value: @user.name %>
 			        </div>
 				</div>
-				<div class="form-group <% if @erro == true %>has-error<%end%>">
+				<div class="form-group <% if @erro == true || @validate[:email] == 1 %>has-error<%end%>">
 					<%= u.label :email, "Email", class: "col-md-2 control-label" %>
 			        <div class="col-md-6">
-			          <%= u.email_field :email, class: "form-control", placeholder: "Email" %>
+			          <%= u.email_field :email, class: "form-control", placeholder: "Email", value: @user.email %>
 			        </div>
 				</div>
-				<div class="form-group">
+				<div class="form-group <% if @validate[:password] == 1 %>has-error<%end%>">
 					<%= u.label :password, "Senha", class: "col-md-2 control-label" %>
 			        <div class="col-md-6">
 			          <%= u.password_field :password, class: "form-control", placeholder: "Senha" %>
