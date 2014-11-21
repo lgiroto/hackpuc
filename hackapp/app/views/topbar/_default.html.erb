@@ -25,6 +25,16 @@
               Olá, <%=current_user.name%>
             </strong>
           </p>
+          <!-- Botar if para apenas o usuário? Fazer diferente para o médico? -->
+          <% if session[:user_type] == 'user' %>
+            <li>
+              <%= link_to "<span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span> <strong>Minhas Consultas</strong>".html_safe, users_consultas_path %> 
+            </li>
+          <% else %>
+            <li>
+              <%= link_to "<span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span> <strong>Minhas Consultas</strong>".html_safe, doctors_consultas_path %>
+            </li>
+          <% end %>
           <li>
             <%= link_to "<span class='glyphicon glyphicon-log-out' aria-hidden='true'></span> Sair".html_safe, logout_path, method: :delete %>
           </li>
@@ -32,6 +42,7 @@
           <li <% if active_button == "login" %>class="active"<%end%>>
             <%= link_to "<span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span> <strong>Entrar</strong>".html_safe, login_path %>
           </li>
+
           <li <% if active_button == "register" %>class="active"<%end%>>
             <%= link_to "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> <strong>Cadastrar</strong>".html_safe, users_register_path %>
           </li>
