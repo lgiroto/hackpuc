@@ -7,7 +7,7 @@
 
 <div class="container" >
 	<h2>Meus Pacientes</h2>
-	<div class="col-md-offset-1 col-md-8" >
+	<div class="col-md-8" >
 		<div class="row">
 			<div class="calendar text-center" >
 				<%= month_calendar events: @schedules, next_link: ->(param, date_range) { link_to "   <div class='btn btn-primary'><span class='glyphicon glyphicon-chevron-right'></span></div>   </strong>".html_safe, { param => date_range.last + 1.day, :doctor => @doctor }  }, previous_link: ->(param, date_range) { link_to "<div class='btn btn-primary'><span class='glyphicon glyphicon-chevron-left'></span></div></a><strong style='font-size: 200%;'>".html_safe, { param => date_range.first - 1.day, :doctor => @doctor }  }  do |date, schedules|  %>
@@ -16,22 +16,47 @@
 				  	</h2>
 					<% if schedules.length > 0 %>
 						<% schedules.each do |schedule| %>	
-							<% if Date.parse(schedule.date).strftime("%e") == date.strftime("%e") %>
+							<% if Date.parse(schedule.date).strftime("%m/%d/%y") == date.strftime("%m/%d/%y") %>
 								<% @user = User.find(schedule.userID) %>
+								<% @hour = schedule.hour %>
 								<% @isSchedualed = true %>
 							<% end %>
 						<% end %>
 
-					    <% if @isScheduled == true %>
-					    	<p style="color: green;" ><%= schedule.hour %>h - <%= @user.name %></p>
+					    <% if @isSchedualed == true %>
+					    	<p style="color: green;" >Horários Agendados</p>
+					    	<%= link_to "Ver Horários", doctors_consultas_path(:date => date),{:class => "btn btn-info btn-sm"} %>
 						<% else %>
 							<p>Horário Disponível</p>
 						<% end %>
 
-					    <% @isScheduled = false %>
+					    <% @isSchedualed = false %>
+				    <% else %>
+				    	<p>Horário Disponível</p>
 				    <% end %>
 				<% end %>
 			</div>
 		</div>
 	</div>
+	<% if @date != '' %>
+		<div class="col-md-4" >
+			<table class="table table-striped" >
+				<thead>
+					<tr>
+						<th>Cliente</th>
+						<th>Horário</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @schedules.each do |schedule| %>	
+					  	<% @user = User.find(schedule.userID) %>
+					  	<tr>
+					  		<td><%= @user.name %></td>
+					  		<td><%= schedule.hour %>h</td>
+					  	</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	<% end %>
 </div>

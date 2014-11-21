@@ -91,6 +91,11 @@ class DoctorsController < ApplicationController
   end
 
   def consultas
+    if params[:date]
+      @date = params[:date]
+    else
+      @date = ''
+    end
     @isSchedualed = false
     @doctor = Doctor.find(current_user.id)
     @schedules = Schedules.where :calendarID => @doctor.calendarID
