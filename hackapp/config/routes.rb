@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   get 'about/index'
-
   get 'home/index'
   get 'home/quatro'
   post 'home/new'
