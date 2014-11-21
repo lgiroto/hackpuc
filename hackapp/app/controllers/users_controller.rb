@@ -5,8 +5,7 @@ class UsersController < ApplicationController
   		@validate[:name] = 0
   		@validate[:email] = 0
   		@validate[:message] = 0
-
-  	
+  		@user = User.new
 	end
 
 	def new
@@ -27,6 +26,7 @@ class UsersController < ApplicationController
 		end
 
 		if @temp[:name].blank? || @temp[:password].blank? || @temp[:email].blank?
+			@user ||= User.new(user_params)
 			render "register" 
    		else
 
