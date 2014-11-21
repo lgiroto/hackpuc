@@ -16,22 +16,25 @@ ActiveRecord::Schema.define(version: 20141120171128) do
   create_table "doctors", force: true do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "phone"
     t.string   "password"
+    t.string   "specialty"
     t.string   "crm"
     t.string   "address"
     t.string   "city"
     t.string   "neighborhood"
-    t.text     "healthPlans"
-    t.integer  "callendarId"
+    t.string   "healthPlans"
+    t.integer  "calendarID"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "specialty"
     t.string   "password_digest"
   end
 
   create_table "schedules", force: true do |t|
-    t.datetime "date"
     t.integer  "calendarID"
+    t.integer  "userID"
+    t.string   "date"
+    t.integer  "hour"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

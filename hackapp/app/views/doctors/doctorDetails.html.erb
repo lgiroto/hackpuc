@@ -6,7 +6,7 @@
 
 <div class="container" >
 	<div class="row">
-		<div class="col-md-5 well" >
+		<div class="col-md-6 well" >
 			<h2>Detalhes do Médico	</h2>
 			<p><span style="font-weight: bold;" >Nome:</span> <%= @doctor.name %></p>
 			<p><span style="font-weight: bold;" >Área:</span> <%= @doctor.specialty %></p>
@@ -15,36 +15,101 @@
 			<p><span style="font-weight: bold;" >Endereço:</span> <%= @doctor.address %></p>
 			<p><span style="font-weight: bold;" >Planos de Saúde:</span> <%= @doctor.healthPlans %></p>
 		</div>
-	</div>
-
-	<div class="row well">
-		<div class="col-md-8 col-md-offset-2 text-center" >
-			<h2>Calendário</h2>
-			<div class="calendar" >
-				<%= month_calendar events: @schedules, next_link: ->(param, date_range) { link_to raw("&raquo;"), { param => date_range.last + 1.day, :doctor => @doctor }  }, previous_link: ->(param, date_range) { link_to raw("&laquo;"), { param => date_range.first - 1.day, :doctor => @doctor }  }  do |date, schedules|  %>
-				  <%= date.strftime("%e") %>
-				  <% schedules.each do |schedule| %>
-				  	<% if schedule.calendarID == @doctor.callendarId && Time.at(schedule.date).strftime("%B %e, %Y") == date.strftime("%B %e, %Y") %>
-					    <div style="background-color: red; padding: 0px;" >
-					    	<p>Horario marcado</p>
-					    </div>
-					<% else  %>
-						<div style="background-color: green; padding: 0px;" >
-					    	<p>Horario disponivel</p>
-					    </div>
-				    <% end %>
-				  <% end %>
-				<% end %>
-			</div>
+		<div class="col-md-6 well" >
+			<h2>Descrição</h2>
+			<p>Adhd allergen bronchial tubes cancer contagious dehydration dna dyslexia epidermis epiglottis exchange meal plan glycosylated hemoglobin test (hemoglobin a1c) heredity inhaler lung function tests melanin oncologist operation orthodontist pinna retainer spinal tap surgery varicella zoster virus. Alcoholism allergy astringents bacteria cartilage chromosomes dislocation epidermis epiglottis fats fatty acids fever glycosylated hemoglobin test (hemoglobin a1c) inhale islet cells ketoacidosis microscope myopia nephropathy nicotine pancreas rescue medications scar skin test tragus. Abrasion addiction glycosylated hemoglobin test (hemoglobin a1c) malocclusion melanin nearsighted optician otitis media sebaceous glands skin test.</p>
 		</div>
 	</div>
 
-	<!-- <button onclick="goBack()">Voltar</button> !-->
+	<div class="row well">
+		<div class="col-md-8 text-center" >
+			<h2>Calendário</h2>
+			<div class="calendar" >
+				<%= month_calendar events: @schedules, next_link: ->(param, date_range) { link_to raw("&raquo;"), { param => date_range.last + 1.day, :doctor => @doctor }  }, previous_link: ->(param, date_range) { link_to raw("&laquo;"), { param => date_range.first - 1.day, :doctor => @doctor }  }  do |date, schedules|  %>
+				  	
+				  	<%= date.strftime("%e") %>
 
-<script>
-function goBack() {
-    window.history.back()
-}
-</script>
+					<!-- <% if schedules.length > 0 %>
+						<% schedules.each do |schedule| %>
+							<% if schedule.calendarID == @doctor.calendarID && schedule.date == date %>
+								<div style="color: red;" >
+									<p>Horarios Indisponíveis</p>
+								</div>
+							<% else %>
+								
+							<% end %>
+						<% end %>
+					<% end %> !-->
 
+					<div style="color: green;" >
+						<p>Horários Disponíveis</p>
+						<%= link_to "Agendar", doctors_doctorDetails_path(@doctor, :date => date, :start_date => date) %>
+					</div>
+
+				<% end %>
+			</div>
+		</div>
+
+		<% if @date != '' %>
+			<div class="col-md-4 well" >
+				<h4>Agendar consulta</h4>
+				<p><strong>Data:</strong> <%= Date.parse(@date).strftime("%d/%m/%Y") %></p>
+				<table class="table table-striped" >
+					<thead>
+						<tr>
+							<th>Horários Disponíveis</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% while @hours < 24 %>
+							<% if @schedules.length > 0 %>
+								<% @schedules.each do |schedule| %>
+								  	<% if schedule.hour == @hours %>
+									    <tr style="color: red;" >
+									    	<td><%= @hours %>h - Horario marcado</td>
+									    </tr>
+
+										<% @hours = @hours + 1 %>
+									<% else  %>
+										<tr style="color: green;" >
+									    	<td>
+									    		<%= form_for :schedule_form, url: doctors_createSchedule_path do |s| %>
+											
+												    <%= hidden_field_tag(:date, @date) %>
+												    <%= hidden_field_tag(:hour, @hours) %>
+												    <%= hidden_field_tag(:calendarID, @doctor.calendarID) %>
+												    <%= hidden_field_tag(:userID, current_user.id) %>
+										   			<%= hidden_field_tag(:doctor, @doctor.id) %>
+													<%= @hours %>h - <%= s.submit :"Agendar", class: "btn btn-primary" %>
+
+												<% end %>
+
+													<% @hours = @hours + 1 %>
+									    	</td>
+									    </tr>
+								    <% end %>
+								<% end %>
+							<% else %>
+								<tr style="color: green;" >
+							    	<td>
+							    		<%= form_for :schedule_form, url: doctors_createSchedule_path do |s| %>
+									
+										    <%= hidden_field_tag(:date, @date) %>
+										    <%= hidden_field_tag(:hour, @hours) %>
+										    <%= hidden_field_tag(:calendarID, @doctor.calendarID) %>
+										    <%= hidden_field_tag(:userID, current_user.id) %>
+										    <%= hidden_field_tag(:doctor, @doctor.id) %>
+											<%= @hours %>h - <%= s.submit :'Agendar', class: "btn btn-primary" %>
+
+										<% end %>
+										<% @hours = @hours + 1 %>
+							    	</td>
+							    </tr>
+						    <% end %>
+						<% end %>
+					</tbody>
+				</table>
+			</div>	
+		<% end %>
+	</div>
 </div>
